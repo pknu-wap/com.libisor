@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import NavBar from "./component/navBar";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Common from './component/common';
+import IndexPage from "./component/indexPage";
+import LoginPage from "./component/loginPage";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [username, setUsername] = useState<string | null>(null)
+    const [loginFormVisible, setLoginFormVisible] = useState<boolean>(false)
+    return (
+        <div>
+            <NavBar setLoginFormVisible={setLoginFormVisible} username={username}/>
+            <Common.Blank/>
+            {!username && loginFormVisible
+                ? <LoginPage setUsername={setUsername}/>
+                : null}
+            <Common.Blank/>
+            <IndexPage/>
+        </div>
+    )
 }
 
 export default App;
