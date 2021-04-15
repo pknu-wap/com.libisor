@@ -1,7 +1,7 @@
 import React from "react";
 import {Col, Container, Row} from "react-bootstrap";
 
-const IndexPage = () => {
+const IndexForm = () => {
     return (
         <>
             <Container>
@@ -15,4 +15,4 @@ const IndexPage = () => {
     )
 }
 
-export default IndexPage
+export default IndexForm
