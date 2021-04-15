@@ -7,6 +7,9 @@ const UserRepository: User[] = [
     {
         username: 'kang',
         password: 'hyeonseung'
+    }, {
+        username: 'pk',
+        password: 'nu'
     }
 ]
 
