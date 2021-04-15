@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
     password: process.env.dbPwd,
     database : process.env.dbDb
 });
-connection.connect( async function(err) {
+connection.connect( function(err) {
     if(err) {
         console.error(err);
         process.exit(1);
