@@ -2,23 +2,33 @@ import React, {useState} from 'react';
 import NavBar from "./component/navBar";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Common from './component/common';
-import IndexPage from "./component/indexPage";
-import LoginPage from "./component/loginPage";
+import IndexForm from "./component/indexForm";
+import LoginForm from "./component/loginForm";
+import ProfileForm from "./component/profileForm";
 
 function App() {
     const [username, setUsername] = useState<string | null>(null)
     const [loginFormVisible, setLoginFormVisible] = useState<boolean>(false)
+    const [profileFormVisible, setProfileFormVisible] = useState<boolean>(false)
     return (
         <div>
-            <NavBar setLoginFormVisible={setLoginFormVisible} username={username}/>
+            <NavBar
+                setLoginFormVisible={setLoginFormVisible}
+                loginFormVisible={loginFormVisible}
+                setProfileFormVisible={setProfileFormVisible}
+                profileFormVisible={profileFormVisible}
+                username={username}/>
             <Common.Blank/>
             {!username && loginFormVisible
-                ? <LoginPage setUsername={setUsername}/>
+                ? <LoginForm setUsername={setUsername}/>
+                : null}
+            {username && profileFormVisible
+                ? <ProfileForm setProfileFormVisible={setProfileFormVisible} setUsername={setUsername}/>
                 : null}
             <Common.Blank/>
-            <IndexPage/>
+            <IndexForm/>
         </div>
     )
 }
 
-export default App;
+export default App

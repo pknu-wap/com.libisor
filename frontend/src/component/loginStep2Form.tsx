@@ -5,10 +5,10 @@ interface LoginStep2PageProps {
     setPasswordValue: Dispatch<React.SetStateAction<string>>
 }
 
-const LoginStep2Page: React.FC<LoginStep2PageProps> = ({setPasswordValue}) => {
+const LoginStep2Form: React.FC<LoginStep2PageProps> = ({setPasswordValue}) => {
 return (
     <>
-        <Form.Group controlId="id">
+        <Form.Group controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="암호" onChange={e => setPasswordValue(e.target.value)}/>
         </Form.Group>
@@ -16,4 +16,4 @@ return (
 )
 }
 
-export default LoginStep2Page
+export default LoginStep2Form
