@@ -1,14 +1,14 @@
 import React, {Dispatch, SetStateAction, useState} from "react";
 import {Alert, Button, Col, Container, Form, Row} from "react-bootstrap";
 import Common from "./common";
-import LoginStep2Page from "./loginStep2Page";
+import LoginStep2Form from "./loginStep2Form";
 import UserService from "../service/user/userService";
 
 interface LoginPageProps {
     setUsername: Dispatch<SetStateAction<null | string>>
 }
 
-const LoginPage: React.FC<LoginPageProps> = ({setUsername}) => {
+const LoginForm: React.FC<LoginPageProps> = ({setUsername}) => {
     const [passwordFormVisible, setPasswordFormVisible] = useState<boolean>(false)
     const [registerFormVisible, setRegisterFormVisible] = useState<boolean>(false)
     const [wrongPwAlertVisible, setWrongPwAlertVisible] = useState<boolean>(false)
@@ -48,12 +48,13 @@ const LoginPage: React.FC<LoginPageProps> = ({setUsername}) => {
                 <Row>
                     <Col>
                         <Form>
-                            <Form.Group controlId="id">
+                            <Form.Group controlId="username">
                                 <Form.Label>Username</Form.Label>
+                                <input hidden={true}/>
                                 <Form.Control type="text" placeholder="아이디"
                                               onChange={e => setUsernameValue(e.target.value)}/>
                             </Form.Group>
-                            {passwordFormVisible ? <LoginStep2Page setPasswordValue={setPasswordValue}/> : null}
+                            {passwordFormVisible ? <LoginStep2Form setPasswordValue={setPasswordValue}/> : null}
                         </Form>
                     </Col>
                 </Row>
@@ -79,4 +80,4 @@ const LoginPage: React.FC<LoginPageProps> = ({setUsername}) => {
     )
 }
 
-export default LoginPage
+export default LoginForm
