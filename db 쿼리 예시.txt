@@ -1,0 +1,9 @@
+SELECT * FROM seatRecords where createdAt = 
+(Select MAX(createdAt) FROM seatRecords WHERE SeatId=85) and seatid = 85;
+
+ SELECT ReadingRoomId, SeatNumber
+FROM Seats
+ JOIN (
+ SELECT MAX(createdAt)
+ FROM seatRecords
+);

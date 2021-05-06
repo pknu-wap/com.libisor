@@ -39,6 +39,13 @@ conn.query('delete from seats;', (err, res, fld) => {
                         if(err) console.error(err);
                         else {
                             let i;
+                             //textLogs 모두 red로 초기화
+                            let text = '';
+                              for(i = 1; i < 90; i++) 
+                                   text += `${i}:gray\n`;
+                            conn.query(`INSERT INTO textlogs(text, readingroomId) VALUES (\'${text}\', 1)`, (err, res, fld) => {
+                                 if(err) console.error(err);
+                            });
                         for(i = 1; i <= 89; i++ ) { // 좌석 1 ~ 89번 추가
                             conn.query('INSERT INTO seats(seatNumber, seatedOrNot, ReadingRoomId) VALUES ('+i+',0,1);', (err, res, fld) => {
                                 if(err) console.error(err);

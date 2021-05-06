@@ -31,7 +31,7 @@ axios.get('http://210.125.122.79/webseat/roomview5.asp?room_no=6')
             if(err) process.exit(1); 
             else if (results.length === 0) {
                 connection.query('INSERT INTO textLogs(ReadingRoomId,text) VALUES (1,\''+ text +'\');', () => {
-                    console.log('DONE');
+                    console.log('textlog init DONE');
                     connection.end();
                 });
             }
@@ -44,8 +44,10 @@ axios.get('http://210.125.122.79/webseat/roomview5.asp?room_no=6')
                     let changeLog = {};
                     // 새 로그 기존 로그 대조, 달라진 좌석 changeLog 객체에 추가
                     for ( log in newLog ) { 
-                        if(newLog[log] === oldLog[log]) { // !== 로 바꾸면 달라진거 구별됨(테스트용으로 ===)
+                        console.log(newLog[log], " checking ", oldLog[log]);
+                        if(newLog[log] !== oldLog[log]) { // !== 로 바꾸면 달라진거 구별됨(테스트용으로 ===)
                             changeLog[(1+parseInt(log))] = newLog[log].split(':')[1];
+                            console.log(log, " different");
                         }
                     }
                     let tor;
