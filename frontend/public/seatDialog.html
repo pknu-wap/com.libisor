@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="seat">
+</div>
+<script>
+    (async () => {
+        //todo when production, fetch url that set dummyData should replace to api server that serve in same domain
+        document.querySelector("#seat").innerHTML = await (await fetch('/dummyData')).text()
+        document.querySelector("#seat > center > table:nth-child(1)").remove()
+        document.querySelector('#seat').innerHTML = document.querySelector("#maptemp").innerHTML
+        for (let i = 1; i < 90; i++) {
+            document.querySelector(`#Layer${i}`).addEventListener('click', (e) => {
+                alert(`${i}석 선택`)
+            })
+        }
+    })()
+</script>
+</body>
+</html>

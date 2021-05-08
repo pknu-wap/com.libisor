@@ -3,6 +3,8 @@ interface User {
     password: string
 }
 
+//todo should connect api server to production
+//temporary code for checking login function
 const UserRepository: User[] = [
     {
         username: 'kang',

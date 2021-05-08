@@ -1,5 +1,5 @@
 import React, {Dispatch, SetStateAction} from "react";
-import {Button, Col, Container, Row} from "react-bootstrap";
+import {Button, Col, Container, Row} from 'react-bootstrap';
 import Common from "./common";
 
 interface ProfileFormProps {

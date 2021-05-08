@@ -1,5 +1,5 @@
 import React, {Dispatch, SetStateAction} from "react";
-import {Button, Form, Nav, Navbar} from "react-bootstrap";
+import {Button, Form, Nav, Navbar, NavbarBrand, NavItem} from 'react-bootstrap';
 import Logo from '../assets/image/pknu.png'
 
 interface NavBarProps {
@@ -10,11 +10,17 @@ interface NavBarProps {
     profileFormVisible: boolean
 }
 
-const NavBar: React.FC<NavBarProps> = ({username, setLoginFormVisible, loginFormVisible, setProfileFormVisible, profileFormVisible}) => {
+const NavBar: React.FC<NavBarProps> = ({
+                                           username,
+                                           setLoginFormVisible,
+                                           loginFormVisible,
+                                           setProfileFormVisible,
+                                           profileFormVisible
+                                       }) => {
     return (
         <>
             <Navbar bg="light" expand="lg">
-                <Navbar.Brand href="#home">
+                <NavbarBrand href="#home">
                     <img
                         alt="pukyong"
                         src={Logo}
@@ -23,20 +29,26 @@ const NavBar: React.FC<NavBarProps> = ({username, setLoginFormVisible, loginForm
                         className="d-inline-block align-top"
                     />{' '}
                     LIBISOR.COM
-                </Navbar.Brand>
+                </NavbarBrand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse>
                     <Nav className="mr-auto">
-                        <Nav.Link href="#미래로일반열람실">미래로일반열람실</Nav.Link>
-                        <Nav.Link href="#미래로노트북열람실">미래로노트북열람실</Nav.Link>
+                        <NavItem>
+                            <Nav.Link href="#미래로일반열람실">미래로일반열람실</Nav.Link>
+                        </NavItem>
+                        <NavItem>
+                            <Nav.Link href="#미래로노트북열람실">미래로노트북열람실</Nav.Link>
+                        </NavItem>
                     </Nav>
                     {
                         username
                             ? <Form inline>
-                                <Button variant="outline-primary" onClick={() => setProfileFormVisible(!profileFormVisible)}>{username} 님</Button>
+                                <Button variant="outline-primary"
+                                        onClick={() => setProfileFormVisible(!profileFormVisible)}>{username} 님</Button>
                             </Form>
                             : <Form inline>
-                                <Button variant="outline-primary" onClick={() => setLoginFormVisible(!loginFormVisible)}>회원가입 / 로그인</Button>
+                                <Button variant="outline-primary" onClick={() => setLoginFormVisible(!loginFormVisible)}>회원가입
+                                    / 로그인</Button>
                             </Form>
                     }
                 </Navbar.Collapse>

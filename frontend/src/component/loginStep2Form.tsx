@@ -1,19 +1,21 @@
 import React, {Dispatch} from "react";
-import {Form} from "react-bootstrap";
+import {FormControl, InputGroup} from 'react-bootstrap';
 
-interface LoginStep2PageProps {
+interface LoginStep2FormProps {
     setPasswordValue: Dispatch<React.SetStateAction<string>>
 }
 
-const LoginStep2Form: React.FC<LoginStep2PageProps> = ({setPasswordValue}) => {
-return (
-    <>
-        <Form.Group controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="암호" onChange={e => setPasswordValue(e.target.value)}/>
-        </Form.Group>
-    </>
-)
+const LoginStep2Form: React.FC<LoginStep2FormProps> = ({setPasswordValue}) => {
+    return (
+        <>
+            <InputGroup className={'mb-3'}>
+                <InputGroup.Prepend>
+                    <InputGroup.Text>Password</InputGroup.Text>
+                </InputGroup.Prepend>
+                <FormControl placeholder={'암호'} type={"password"} onChange={e => setPasswordValue(e.target.value)}/>
+            </InputGroup>
+        </>
+    )
 }
 
 export default LoginStep2Form

@@ -1,5 +1,8 @@
 import React from "react";
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Container, Image, Row} from "react-bootstrap";
+import miraeB1 from '../assets/image/miraeB1.png'
+import CommentForm from "./commentForm";
+import Common from "./common";
 
 const IndexForm = () => {
     return (
@@ -7,9 +10,18 @@ const IndexForm = () => {
             <Container>
                 <Row>
                     <Col>
-                        여기에 좌석배치도도 넣고, 코멘트 남기는 곳도 넣고
+                        <iframe src={'/seatDialog.html'} width={'100%'} height={'440px'} frameBorder={0}>
+                        </iframe>
                     </Col>
                 </Row>
+                <Common.Blank/>
+                <Row>
+                    <Col>
+                        <hr/>
+                    </Col>
+                </Row>
+                <Common.Blank/>
+                <CommentForm/>
             </Container>
         </>
     )

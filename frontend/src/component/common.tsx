@@ -1,11 +1,13 @@
 import React from 'react'
-import { Row } from 'react-bootstrap'
+import {Col, Row} from 'react-bootstrap'
 
 const Common = {
     Blank: () => {
         return (
             <Row>
-                <br/>
+                <Col>
+                    <br/>
+                </Col>
             </Row>
         )
     }

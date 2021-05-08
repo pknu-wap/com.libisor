@@ -1,8 +1,9 @@
 import React, {Dispatch, SetStateAction, useState} from "react";
-import {Alert, Button, Col, Container, Form, Row} from "react-bootstrap";
+import {Alert, Button, Col, Container, FormControl, InputGroup, Row} from "react-bootstrap";
 import Common from "./common";
 import LoginStep2Form from "./loginStep2Form";
 import UserService from "../service/user/userService";
+import RegisterForm from "./registerForm";
 
 interface LoginPageProps {
     setUsername: Dispatch<SetStateAction<null | string>>
@@ -47,17 +48,20 @@ const LoginForm: React.FC<LoginPageProps> = ({setUsername}) => {
                 <Common.Blank/>
                 <Row>
                     <Col>
-                        <Form>
-                            <Form.Group controlId="username">
-                                <Form.Label>Username</Form.Label>
-                                <input hidden={true}/>
-                                <Form.Control type="text" placeholder="아이디"
-                                              onChange={e => setUsernameValue(e.target.value)}/>
-                            </Form.Group>
+                        <div>
+                            <InputGroup className={'mb-3'}>
+                                <InputGroup.Prepend>
+                                    <InputGroup.Text>Username</InputGroup.Text>
+                                </InputGroup.Prepend>
+                                <FormControl placeholder={'아이디'} type={"text"}
+                                             onChange={e => setUsernameValue(e.target.value)}/>
+                            </InputGroup>
                             {passwordFormVisible ? <LoginStep2Form setPasswordValue={setPasswordValue}/> : null}
-                        </Form>
+                            {registerFormVisible ? <RegisterForm setMail={null}/> : null}
+                        </div>
                     </Col>
                 </Row>
+                <Common.Blank/>
                 <Row>
                     <Col>
                         <Button variant="primary" onClick={submitUser}>

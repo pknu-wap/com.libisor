@@ -1,0 +1,1112 @@
+// <!-- //todo when production, this dummy data should detach and connect to api server that serve in same domain because of CORS -->
+<html>
+<head>
+    <title> 중앙도서관 열람실 좌석 현황</title>
+    <meta name="Author" content="와이즈네스코">
+        <meta name="Keywords" content=" 중앙도서관 열람실 좌석 현황">
+            <meta name="Description" content=" 중앙도서관 열람실 좌석 현황">
+                <link rel="stylesheet" href="./common/style.css" type="text/css">
+</head>
+<body leftmargin="0" topmargin="0">
+<center>
+
+    <table width="1000" border="0">
+        <tbody>
+        <tr>
+            <td align="center">
+                <table border="0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <img src="./images/logo.gif" alt="">
+                        </td>
+                        <td>
+                            <font size="4"><b> 열람실별 실시간 좌석 정보</b></font>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+
+        <table>
+            <tbody>
+            <tr>
+                <!--td valign=top>
+
+        <table width='100' border=0 cellspacing='0' cellpadding='0'>
+            <tr>
+                <td><font face="휴먼옛체">
+                    <BR><BR><BR>
+        <a href="./roomview5.asp?room_no=1">제 1 열람실</a><BR><BR>
+        <a href="./roomview5.asp?room_no=2">제 2 열람실</a><BR><BR>
+                </font></td>
+            </tr>
+        </table>
+
+                </td-->
+                <td>
+
+                    <table width="1000" border="0" cellSpacing="0" cellPadding="0" bbgcolor="#000000">
+                        <tbody>
+                        <tr>
+                            <td width="100%">
+                                <table width="100%" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td align="left" width="50%">
+                                            <a href="javascript:history.back();"><img src="./images/before.gif"
+                                                                                      border="0"></a>&nbsp;
+                                        </td>
+                                        <td align="right" width="50%">
+                                            <font style="color:black;font-size:9pt;font-weight:900;">사용중
+                                                색상 &nbsp;&nbsp;&nbsp; 미사용 색상 </font>
+                                            <table width="165" height="21" border="0" cellPadding="0" cellSpacing="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td width="70" bgcolor="red" align="center" valign="middle"><font
+                                                        style="color:yellow;font-size:8pt;font-weight:900;">사용중</font>
+                                                    </td>
+                                                    <td width="25"></td>
+                                                    <td width="70" bgcolor="gray" align="center" valign="middle"><font
+                                                        style="color:yellow;font-size:8pt;font-weight:900;">미사용</font>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="100%" bgcolor="#f3f3f3">
+                                <table width="100%" border="1" cellSpacing="0" cellPadding="0">
+                                    <tbody>
+                                    <tr>
+                                        <td height="30" align="center"><font size="-1"><b>미래로:노트북열람실(B1)</b></font></td>
+                                        <td width="15%" align="center"><font size="-1"><b>총 좌석수 : </b></font> <font
+                                            color="blue"><b>89</b></font></td>
+                                        <td width="15%" align="center"><font size="-1"><b>사용 좌석수 : </b></font> <font
+                                            color="blue"><b>82</b></font></td>
+                                        <td width="15%" align="center"><font size="-1"><b>잔여 좌석수 : </b></font> <font
+                                            color="blue"><b>7</b></font></td>
+                                        <td width="20%" align="center"><font size="-1">2021-05-08&nbsp;오후 2:39:27
+                                            현재</font></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr><!-- 1009 * 602 -->
+
+                            <td width="100%">
+                                <!-- ======================================= MAPTEMP 시작 =====================================-->
+                                <div id="maptemp" style="position:relative; left:0px; top:0px;">
+                                    <div id="backimage" style="position:absolute; left:0px; top:0px; z-index:0"><img
+                                        border="0" src="./MAP/6-back.jpg"></div>
+
+                                    <div id="Layer1"
+                                         style="position:absolute; left:874px; top:203px; width:27px; height:18px; z-index:1">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">1</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer2"
+                                         style="position:absolute; left:915px; top:203px; width:27px; height:18px; z-index:2">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">2</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer3"
+                                         style="position:absolute; left:915px; top:180px; width:27px; height:18px; z-index:3">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">3</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer4"
+                                         style="position:absolute; left:874px; top:180px; width:27px; height:18px; z-index:4">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">4</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer5"
+                                         style="position:absolute; left:801px; top:180px; width:27px; height:18px; z-index:5">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">5</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer6"
+                                         style="position:absolute; left:760px; top:180px; width:27px; height:18px; z-index:6">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">6</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer7"
+                                         style="position:absolute; left:719px; top:180px; width:27px; height:18px; z-index:7">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">7</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer8"
+                                         style="position:absolute; left:719px; top:203px; width:27px; height:18px; z-index:8">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">8</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer9"
+                                         style="position:absolute; left:760px; top:203px; width:27px; height:18px; z-index:9">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">9</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer10"
+                                         style="position:absolute; left:801px; top:203px; width:27px; height:18px; z-index:10">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">10</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer11"
+                                         style="position:absolute; left:739px; top:278px; width:27px; height:18px; z-index:11">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">11</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer12"
+                                         style="position:absolute; left:781px; top:278px; width:27px; height:18px; z-index:12">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">12</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer13"
+                                         style="position:absolute; left:822px; top:278px; width:27px; height:18px; z-index:13">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">13</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer14"
+                                         style="position:absolute; left:822px; top:301px; width:27px; height:18px; z-index:14">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">14</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer15"
+                                         style="position:absolute; left:781px; top:301px; width:27px; height:18px; z-index:15">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">15</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer16"
+                                         style="position:absolute; left:739px; top:301px; width:27px; height:18px; z-index:16">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">16</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer17"
+                                         style="position:absolute; left:694px; top:392px; width:27px; height:18px; z-index:17">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">17</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer18"
+                                         style="position:absolute; left:735px; top:392px; width:27px; height:18px; z-index:18">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">18</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer19"
+                                         style="position:absolute; left:777px; top:392px; width:27px; height:18px; z-index:19">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">19</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer20"
+                                         style="position:absolute; left:818px; top:392px; width:27px; height:18px; z-index:20">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">20</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer21"
+                                         style="position:absolute; left:818px; top:415px; width:27px; height:18px; z-index:21">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">21</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer22"
+                                         style="position:absolute; left:777px; top:415px; width:27px; height:18px; z-index:22">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">22</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer23"
+                                         style="position:absolute; left:735px; top:415px; width:27px; height:18px; z-index:23">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">23</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer24"
+                                         style="position:absolute; left:694px; top:415px; width:27px; height:18px; z-index:24">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">24</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer25"
+                                         style="position:absolute; left:694px; top:487px; width:27px; height:18px; z-index:25">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">25</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer26"
+                                         style="position:absolute; left:735px; top:487px; width:27px; height:18px; z-index:26">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">26</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer27"
+                                         style="position:absolute; left:777px; top:487px; width:27px; height:18px; z-index:27">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">27</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer28"
+                                         style="position:absolute; left:818px; top:487px; width:27px; height:18px; z-index:28">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">28</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer29"
+                                         style="position:absolute; left:818px; top:510px; width:27px; height:18px; z-index:29">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">29</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer30"
+                                         style="position:absolute; left:777px; top:510px; width:27px; height:18px; z-index:30">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">30</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer31"
+                                         style="position:absolute; left:735px; top:510px; width:27px; height:18px; z-index:31">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">31</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer32"
+                                         style="position:absolute; left:694px; top:510px; width:27px; height:18px; z-index:32">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">32</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer33"
+                                         style="position:absolute; left:571px; top:278px; width:27px; height:18px; z-index:33">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">33</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer34"
+                                         style="position:absolute; left:542px; top:278px; width:27px; height:18px; z-index:34">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">34</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer35"
+                                         style="position:absolute; left:571px; top:245px; width:27px; height:18px; z-index:35">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">35</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer36"
+                                         style="position:absolute; left:542px; top:245px; width:27px; height:18px; z-index:36">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="gray" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">36</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer37"
+                                         style="position:absolute; left:436px; top:278px; width:27px; height:18px; z-index:37">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">37</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer38"
+                                         style="position:absolute; left:407px; top:278px; width:27px; height:18px; z-index:38">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">38</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer39"
+                                         style="position:absolute; left:436px; top:245px; width:27px; height:18px; z-index:39">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">39</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer40"
+                                         style="position:absolute; left:407px; top:245px; width:27px; height:18px; z-index:40">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">40</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer41"
+                                         style="position:absolute; left:269px; top:187px; width:27px; height:18px; z-index:41">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">41</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer42"
+                                         style="position:absolute; left:228px; top:187px; width:27px; height:18px; z-index:42">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="gray" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">42</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer43"
+                                         style="position:absolute; left:146px; top:187px; width:27px; height:18px; z-index:43">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">43</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer44"
+                                         style="position:absolute; left:105px; top:187px; width:27px; height:18px; z-index:44">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">44</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer45"
+                                         style="position:absolute; left:105px; top:208px; width:27px; height:18px; z-index:45">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">45</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer46"
+                                         style="position:absolute; left:146px; top:208px; width:27px; height:18px; z-index:46">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">46</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer47"
+                                         style="position:absolute; left:228px; top:209px; width:27px; height:18px; z-index:47">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">47</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer48"
+                                         style="position:absolute; left:269px; top:209px; width:27px; height:18px; z-index:48">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">48</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer49"
+                                         style="position:absolute; left:269px; top:282px; width:27px; height:18px; z-index:49">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">49</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer50"
+                                         style="position:absolute; left:228px; top:282px; width:27px; height:18px; z-index:50">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">50</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer51"
+                                         style="position:absolute; left:146px; top:282px; width:27px; height:18px; z-index:51">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">51</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer52"
+                                         style="position:absolute; left:105px; top:282px; width:27px; height:18px; z-index:52">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">52</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer53"
+                                         style="position:absolute; left:105px; top:302px; width:27px; height:18px; z-index:53">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">53</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer54"
+                                         style="position:absolute; left:146px; top:302px; width:27px; height:18px; z-index:54">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">54</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer55"
+                                         style="position:absolute; left:228px; top:302px; width:27px; height:18px; z-index:55">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">55</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer56"
+                                         style="position:absolute; left:269px; top:302px; width:27px; height:18px; z-index:56">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">56</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer57"
+                                         style="position:absolute; left:269px; top:376px; width:27px; height:18px; z-index:57">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">57</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer58"
+                                         style="position:absolute; left:228px; top:376px; width:27px; height:18px; z-index:58">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">58</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer59"
+                                         style="position:absolute; left:146px; top:376px; width:27px; height:18px; z-index:59">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">59</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer60"
+                                         style="position:absolute; left:105px; top:376px; width:27px; height:18px; z-index:60">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">60</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer61"
+                                         style="position:absolute; left:105px; top:397px; width:27px; height:18px; z-index:61">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">61</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer62"
+                                         style="position:absolute; left:146px; top:397px; width:27px; height:18px; z-index:62">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">62</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer63"
+                                         style="position:absolute; left:228px; top:397px; width:27px; height:18px; z-index:63">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">63</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer64"
+                                         style="position:absolute; left:269px; top:397px; width:27px; height:18px; z-index:64">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">64</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer65"
+                                         style="position:absolute; left:253px; top:501px; width:27px; height:18px; z-index:65">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">65</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer66"
+                                         style="position:absolute; left:253px; top:534px; width:27px; height:18px; z-index:66">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">66</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer67"
+                                         style="position:absolute; left:224px; top:534px; width:27px; height:18px; z-index:67">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">67</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer68"
+                                         style="position:absolute; left:224px; top:501px; width:27px; height:18px; z-index:68">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">68</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer69"
+                                         style="position:absolute; left:115px; top:501px; width:27px; height:18px; z-index:69">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">69</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer70"
+                                         style="position:absolute; left:115px; top:534px; width:27px; height:18px; z-index:70">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">70</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer71"
+                                         style="position:absolute; left:86px; top:534px; width:27px; height:18px; z-index:71">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">71</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer72"
+                                         style="position:absolute; left:86px; top:501px; width:27px; height:18px; z-index:72">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">72</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer73"
+                                         style="position:absolute; left:22px; top:437px; width:27px; height:18px; z-index:73">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="gray" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">73</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer74"
+                                         style="position:absolute; left:22px; top:404px; width:27px; height:18px; z-index:74">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">74</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer75"
+                                         style="position:absolute; left:22px; top:371px; width:27px; height:18px; z-index:75">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">75</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer76"
+                                         style="position:absolute; left:22px; top:338px; width:27px; height:18px; z-index:76">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="gray" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">76</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer77"
+                                         style="position:absolute; left:22px; top:305px; width:27px; height:18px; z-index:77">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">77</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer78"
+                                         style="position:absolute; left:22px; top:272px; width:27px; height:18px; z-index:78">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">78</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer79"
+                                         style="position:absolute; left:22px; top:238px; width:27px; height:18px; z-index:79">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">79</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer80"
+                                         style="position:absolute; left:22px; top:205px; width:27px; height:18px; z-index:80">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">80</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer81"
+                                         style="position:absolute; left:22px; top:172px; width:27px; height:18px; z-index:81">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">81</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer82"
+                                         style="position:absolute; left:933px; top:303px; width:27px; height:18px; z-index:82">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">82</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer83"
+                                         style="position:absolute; left:933px; top:336px; width:27px; height:18px; z-index:83">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="gray" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">83</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer84"
+                                         style="position:absolute; left:933px; top:369px; width:27px; height:18px; z-index:84">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">84</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer85"
+                                         style="position:absolute; left:933px; top:402px; width:27px; height:18px; z-index:85">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="gray" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">85</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer86"
+                                         style="position:absolute; left:933px; top:436px; width:27px; height:18px; z-index:86">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">86</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer87"
+                                         style="position:absolute; left:933px; top:469px; width:27px; height:18px; z-index:87">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="gray" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">87</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer88"
+                                         style="position:absolute; left:933px; top:502px; width:27px; height:18px; z-index:88">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">88</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="Layer89"
+                                         style="position:absolute; left:933px; top:535px; width:27px; height:18px; z-index:89">
+                                        <table width="96%" height="96%" border="0" cellPadding="0" cellSpacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <td bgcolor="red" align="center" valign="middle"><font
+                                                    style="color:yellow;font-size:10pt;font-weight:900;">89</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                                <!-- ======================================= MAPTEMP 끝 =====================================-->
+                            </td>
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+
+</center>
+
+</body>
+</html>
