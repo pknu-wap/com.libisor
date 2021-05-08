@@ -19,7 +19,7 @@ module.exports = class Seat extends Sequelize.Model {
       underscored: false,
       modelName: 'Seat',
       tableName: 'seats',
-      paranoid: true,
+      paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci',
     });

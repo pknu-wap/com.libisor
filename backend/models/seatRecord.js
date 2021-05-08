@@ -6,7 +6,9 @@ module.exports = class SeatRecord extends Sequelize.Model {
       takeOrReturn: {
         type: Sequelize.TINYINT,
         allowNull: false,
-      }
+      },
+      createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE
     }, {
       sequelize,
       timestamps: true,

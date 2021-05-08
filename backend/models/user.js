@@ -21,6 +21,8 @@ module.exports = class User extends Sequelize.Model {
         type: Sequelize.STRING(50),
         allowNull: true,
       },
+      createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE
     }, {
       sequelize,
       timestamps: true,

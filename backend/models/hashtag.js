@@ -10,7 +10,7 @@ module.exports = class Hashtag extends Sequelize.Model {
             },
         }, {
             sequelize,
-            timestamps: true,
+            timestamps: false,
             underscored: false,
             modelName: 'Hashtag',
             tableName: 'hashtags',
