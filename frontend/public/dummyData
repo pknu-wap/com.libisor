@@ -1,4 +1,5 @@
 // <!-- //todo when production, this dummy data should detach and connect to api server that serve in same domain because of CORS -->
+// <!-- 좌석페이지에 바로 접근 시 브라우저 CORS 보안 땜에 XML리퀘 블록됨 -->
 <html>
 <head>
     <title> 중앙도서관 열람실 좌석 현황</title>
