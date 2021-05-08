@@ -26,7 +26,7 @@ function App() {
                 ? <ProfileForm setProfileFormVisible={setProfileFormVisible} setUsername={setUsername}/>
                 : null}
             <Common.Blank/>
-            <IndexForm/>
+            <IndexForm username={username}/>
         </div>
     )
 }
