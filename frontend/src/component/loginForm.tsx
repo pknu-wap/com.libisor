@@ -24,6 +24,10 @@ const LoginForm: React.FC<LoginPageProps> = ({setUsername}) => {
             } else {
                 setPasswordFormVisible(false)
                 setRegisterFormVisible(true)
+                if (registerFormVisible) {
+                    UserService.joinUser(usernameValue, passwordValue)
+                    setUsername(usernameValue)
+                }
             }
         } else {
             if (UserService.checkPassword(usernameValue, passwordValue)) {
@@ -57,7 +61,7 @@ const LoginForm: React.FC<LoginPageProps> = ({setUsername}) => {
                                              onChange={e => setUsernameValue(e.target.value)}/>
                             </InputGroup>
                             {passwordFormVisible ? <LoginStep2Form setPasswordValue={setPasswordValue}/> : null}
-                            {registerFormVisible ? <RegisterForm setMail={null}/> : null}
+                            {registerFormVisible ? <RegisterForm setPasswordValue={setPasswordValue}/> : null}
                         </div>
                     </Col>
                 </Row>
@@ -70,11 +74,14 @@ const LoginForm: React.FC<LoginPageProps> = ({setUsername}) => {
                     </Col>
                     <Col>
                         {passwordFormVisible && !wrongPwAlertVisible
-                            ? <Alert variant={'primary'}>암호를 입력해 주십시오.</Alert>
+                            ? <Alert variant={'primary'}>기존 회원이시군요! 암호를 입력해 주십시오.</Alert>
                             : null}
                         {passwordFormVisible && wrongPwAlertVisible
                             ? <Alert variant={'danger'}>틀린 암호입니다. 다시 입력해 주십시오.</Alert>
                             : null}
+                        {registerFormVisible
+                        ? <Alert variant={'primary'}>새회원이시군요! 가입양식을 기입해 주십시오.</Alert>
+                        :null}
                     </Col>
                 </Row>
                 <Common.Blank/>
