@@ -8,6 +8,7 @@ interface NavBarProps {
     setProfileFormVisible: Dispatch<SetStateAction<boolean>>
     loginFormVisible: boolean
     profileFormVisible: boolean
+    setLibName: Dispatch<SetStateAction<string>>
 }
 
 const NavBar: React.FC<NavBarProps> = ({
@@ -15,7 +16,8 @@ const NavBar: React.FC<NavBarProps> = ({
                                            setLoginFormVisible,
                                            loginFormVisible,
                                            setProfileFormVisible,
-                                           profileFormVisible
+                                           profileFormVisible,
+                                           setLibName
                                        }) => {
     return (
         <>
@@ -34,10 +36,14 @@ const NavBar: React.FC<NavBarProps> = ({
                 <Navbar.Collapse>
                     <Nav className="mr-auto">
                         <NavItem>
-                            <Nav.Link href="#미래로일반열람실">미래로일반열람실</Nav.Link>
+                            <div onClick={() => setLibName('mireaF1Dummy')}>
+                                <Nav.Link>미래로일반열람실</Nav.Link>
+                            </div>
                         </NavItem>
                         <NavItem>
-                            <Nav.Link href="#미래로노트북열람실">미래로노트북열람실</Nav.Link>
+                            <div onClick={() => setLibName('mireaB1Dummy')}>
+                                <Nav.Link>미래로노트북열람실</Nav.Link>
+                            </div>
                         </NavItem>
                     </Nav>
                     {

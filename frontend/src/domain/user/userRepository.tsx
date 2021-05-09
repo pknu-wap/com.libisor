@@ -2,7 +2,6 @@ import User from "./User";
 
 //todo should connect api server to production
 //temporary code for checking login function
-//
 const UserRepository: User[] = [
     {
         id: 'test1',

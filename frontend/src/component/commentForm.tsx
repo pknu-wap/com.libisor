@@ -31,8 +31,12 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
             </Row>
         )
     }
-    const [commentForms, setCommentForms] = useState(CommentService.getAll().map(v => {return comment(v.id, v.comment, v.createdAt)})),
-        reloadComments = () => setCommentForms(CommentService.getAll().map(v => {return comment(v.id, v.comment, v.createdAt)}))
+    const [commentForms, setCommentForms] = useState(CommentService.getAll().map(v => {
+            return comment(v.id, v.comment, v.createdAt)
+        })),
+        reloadComments = () => setCommentForms(CommentService.getAll().map(v => {
+            return comment(v.id, v.comment, v.createdAt)
+        }))
     const [newCommentBody, setNewCommentBody] = useState('')
     const postComment = (username: string, body: string) => {
         CommentService.postComment(username, body)
@@ -46,7 +50,14 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
                     </h4>
                 </Col>
             </Row>
-            <Common.Blank/>
+            {username ? null
+                : <Row className={'mb-3'}>
+                    <Col>
+                        <small className={'text-muted'}>
+                            로그인 하여 코멘트 작성 가능합니다.
+                        </small>
+                    </Col>
+                </Row>}
             {username
                 ? <Row className={'mb-3'}>
                     <Col>
@@ -79,6 +90,7 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
                 </Row>
                 : null}
             {commentForms}
+            <Common.Blank/>
         </>
     )
 }
