@@ -11,8 +11,16 @@ module.exports = class Post extends Sequelize.Model {
         type: Sequelize.STRING(200),
         allowNull: true,
       },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal("NOW()")
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal("NOW()")
+      }
     }, {
       sequelize,
       timestamps: true,

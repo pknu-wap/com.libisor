@@ -7,8 +7,16 @@ module.exports = class SeatRecord extends Sequelize.Model {
         type: Sequelize.TINYINT,
         allowNull: false,
       },
-      createdAt: Sequelize.DATE,
-      updatedAt: Sequelize.DATE
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal("NOW()")
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.literal("NOW()")
+      }
     }, {
       sequelize,
       timestamps: true,
@@ -18,6 +26,7 @@ module.exports = class SeatRecord extends Sequelize.Model {
       paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci',
+      engine: 'MYISAM'
     });
   }
 

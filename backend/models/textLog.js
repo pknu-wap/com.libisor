@@ -16,6 +16,7 @@ module.exports = class TextLog extends Sequelize.Model {
       paranoid: false,
       charset: 'utf8',
       collate: 'utf8_general_ci',
+      engine: 'MYISAM'
     });
   }
 
