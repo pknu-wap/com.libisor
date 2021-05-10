@@ -35,7 +35,10 @@ axios.get('http://210.125.122.79/webseat/roomview5.asp?room_no=6')
                     connection.end();
                 });
             }
-            //else if(text===results[0].text) ; // 텍스트가 같으면 람다 종료, 테스트용으로 주석 처리
+            else if(text===results[0].text) { // 텍스트가 같으면 람다 종료, 테스트시 주석 처리
+                conneciton.end();
+                process.exit(0);  
+            }
             else { // (text!==results[0].text) 텍스트가 다르면 달라진 좌석 찾아서 처리
                 // 달라진 텍스트 로그 DB에 업데이트
                 connection.query('UPDATE textlogs SET text = \''+ text +'\' WHERE ReadingRoomId=1;', (err, res, fld) => {
@@ -59,7 +62,6 @@ axios.get('http://210.125.122.79/webseat/roomview5.asp?room_no=6')
                         `);
                     }
                     //console.log(changeLog);
-                    console.log('DONE..');
                     connection.end();
                 });
             }
