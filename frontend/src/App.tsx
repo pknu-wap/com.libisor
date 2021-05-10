@@ -28,7 +28,6 @@ function App() {
             {username && profileFormVisible
                 ? <ProfileForm setProfileFormVisible={setProfileFormVisible} setUsername={setUsername}/>
                 : null}
-            <Common.Blank/>
             <IndexForm username={username} libName={libName}/>
             <Footer/>
         </div>

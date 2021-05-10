@@ -5,7 +5,7 @@ const Common = {
     Blank: () => {
         return (
             <>
-                <Row className={'mb-3'}>
+                <Row className={'mb-5'}>
                 </Row>
             </>
         )

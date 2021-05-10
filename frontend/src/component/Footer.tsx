@@ -7,7 +7,6 @@ const Footer = () => {
             <hr/>
             <Container>
                 <Common.Blank/>
-                <Common.Blank/>
                 <Row className={'mb-3'}>
                     <Col>
                         <small className={'text-muted'}>
@@ -15,6 +14,7 @@ const Footer = () => {
                             <br/>
                             <u>
                                 <a target={'_blank'} className={'text-muted'}
+                                   rel={'noreferrer'}
                                    href="https://github.com/pknu-wap/com.libisor">
                                     https://github.com/pknu-wap/com.libisor
                                 </a>
@@ -24,7 +24,6 @@ const Footer = () => {
                         </small>
                     </Col>
                 </Row>
-                <Common.Blank/>
                 <Common.Blank/>
             </Container>
         </>

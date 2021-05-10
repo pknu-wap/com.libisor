@@ -4,6 +4,7 @@ import CommentRepository from "../../domain/comment/commentRepository";
 interface CommentServiceInterface {
     getAll: () => Comment[]
     postComment: (id: string, body: string) => boolean
+    deleteComment: (user: string, createdAt: Date) => boolean
 }
 
 const CommentService: CommentServiceInterface = {
@@ -22,6 +23,15 @@ const CommentService: CommentServiceInterface = {
         CommentRepository.push({
             id, comment: body, createdAt: new Date()
         })
+        return true
+    },
+    //todo replace code to production
+    //temporary code for checking comment function
+    //DELETE /comment
+    deleteComment: (user, createdAt) => {
+        CommentRepository.splice(CommentRepository.findIndex(v => {
+            return v.id === user && v.createdAt === createdAt
+        }), 1)
         return true
     }
 }

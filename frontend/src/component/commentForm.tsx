@@ -7,9 +7,6 @@ interface CommentFormProps {
     username: string | null
 }
 
-const deleteComment = () => {
-    alert('comment deleted.')
-}
 
 const CommentForm: React.FC<CommentFormProps> = ({username}) => {
     const comment = (writer: string, body: string, date: Date) => {
@@ -24,7 +21,8 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
                             <small className="text-muted">
                                 {date.toLocaleString()}{' '}
                             </small>
-                            {writer === username ? (<small onClick={() => deleteComment()}>삭제</small>) : null}
+                            {writer === username ? (
+                                <small onClick={() => deleteComment(writer, date)}>삭제</small>) : null}
                         </Card.Footer>
                     </Card>
                 </Col>
@@ -41,9 +39,14 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
     const postComment = (username: string, body: string) => {
         CommentService.postComment(username, body)
     }
+    const deleteComment = async (writer: string, createdAt: Date) => {
+        if (CommentService.deleteComment(writer, createdAt)) await alert('코멘트 삭제 처리되었습니다.')
+        else await alert('코멘트 삭제 중 오류 발생. 관리자 문의 요.')
+        await reloadComments()
+    }
     return (
         <>
-            <Row>
+            <Row className={'mb-4'}>
                 <Col>
                     <h4>
                         코멘트 남기기

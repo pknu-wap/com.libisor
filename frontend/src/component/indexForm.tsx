@@ -1,7 +1,7 @@
 import React from "react";
 import {Col, Container, Row} from "react-bootstrap";
 import CommentForm from "./commentForm";
-import Common from "./common";
+import SeatForm from "./seatForm";
 
 interface IndexFormProps {
     username: string | null,
@@ -33,21 +33,12 @@ const IndexForm: React.FC<IndexFormProps> = ({username, libName}) => {
                         </small>
                     </Col>
                 </Row>
-                <Row>
-                    <Col>
-                        <span>
-                        {libName}
-                        </span>
-                        <iframe src={`/seatDialog.html?libName=${libName}`} width={'100%'} height={'600px'} frameBorder={0} title={'seat'}>
-                        </iframe>
-                    </Col>
-                </Row>
-                <Row>
+                <SeatForm libName={libName}/>
+                <Row className={'mb-3'}>
                     <Col>
                         <hr/>
                     </Col>
                 </Row>
-                <Common.Blank/>
                 <CommentForm username={username}/>
             </Container>
         </>
