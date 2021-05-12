@@ -7,6 +7,8 @@ const { sequelize } = require('./models/seatRecord');
 
 require('dotenv').config();
 
+const pageRouter = require('./routes/page');
+
 const app = express();
 
 app.set('port', process.env.PORT||8005);
