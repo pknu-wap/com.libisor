@@ -36,7 +36,7 @@ axios.get('http://210.125.122.79/webseat/roomview5.asp?room_no=6')
                 });
             }
             else if(text===results[0].text) { // 텍스트가 같으면 람다 종료, 테스트시 주석 처리
-                conneciton.end();
+                connection.end();
                 process.exit(0);  
             }
             else { // (text!==results[0].text) 텍스트가 다르면 달라진 좌석 찾아서 처리
@@ -50,7 +50,7 @@ axios.get('http://210.125.122.79/webseat/roomview5.asp?room_no=6')
                         console.log(newLog[log], " checking ", oldLog[log]);
                         if(newLog[log] !== oldLog[log]) { // !== 로 바꾸면 달라진거 구별됨(테스트용으로 ===)
                             changeLog[(1+parseInt(log))] = newLog[log].split(':')[1];
-                            console.log(log, " different");
+                            console.log(1+parseInt(log), " different");
                         }
                     }
                     let tor;

@@ -3,17 +3,17 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const path = require('path');
 const session = require('express-session');
-const { sequelize } = require('./models/seatRecord');
 
 require('dotenv').config();
 
 const pageRouter = require('./routes/page');
+const seatRouter = require('./routes/seat');
 
 const app = express();
 
 app.set('port', process.env.PORT||8005);
 const { sequelize } = require('./models');
-sequelize.sync( { force: true }) 
+sequelize.sync( { force: false }) 
 .then( () => {
     console.log('DB connection succeeded!');
 })
@@ -39,6 +39,8 @@ app.use(session({
 }));
 
 
+app.use('/', pageRouter);
+app.use('/seat', seatRouter);
 
 app.use((req, res, next) => {
     const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
