@@ -1,3 +1,4 @@
+use libisor_dev;
 -- 삭제 파트
 delete from seatRecords; -- 좌석 기록
 delete from textlogs; -- 스크래핑 텍스트
