@@ -49,6 +49,18 @@ router.get('/:readingRoom', async (req, res) => {
                 data["seatNumber"] = e.seatNumber;
                 data["taken"] = e.SeatRecords[0].takeOrReturn;
                 data["time"] = e.SeatRecords[0].createdAt.toISOString().replace('.000Z','');
+                let timeUsed = Math.floor(( new Date - new Date(data["time"]))/3600000);
+                data["used"] = timeUsed;
+                if(data["taken"]===1) {
+                    switch(timeUsed) {
+                        case 5: // 6시간 임박
+                            data["taken"] = 3;
+                            break;
+                        case 11: // 12시간 임박
+                            data["taken"] = 4;
+                            break;
+                    }
+                }
                 result.push(data);
             });
             res.json(result);
