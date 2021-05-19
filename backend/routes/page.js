@@ -1,9 +1,10 @@
 const express = require('express');
+const { isLoggedIn,  isNotLoggedIn } = require('./middlewares');
 
 const router = express.Router();
 
 router.use((req,res,next) => {
-    //res.send('hi!');
+    res.locals.user = req.user;
     next();
 });
 

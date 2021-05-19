@@ -3,16 +3,22 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const path = require('path');
 const session = require('express-session');
+const passport = require('passport');
 
 require('dotenv').config();
 
 const pageRouter = require('./routes/page');
+const authRouter = require('./routes/auth');
+const cmntRouter = require('./routes/comment'); 
 const seatRouter = require('./routes/seat');
 
-const app = express();
-
-app.set('port', process.env.PORT||8005);
 const { sequelize } = require('./models');
+
+const passportConfig = require('./passport');
+
+const app = express();
+passportConfig();
+app.set('port', process.env.PORT||8005);
 sequelize.sync( { force: false }) 
 .then( () => {
     console.log('DB connection succeeded!');
@@ -37,9 +43,13 @@ app.use(session({
         secure: false,
     },
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use('/', pageRouter);
+app.use('/auth', authRouter);
+app.use('/comment', cmntRouter);
 app.use('/seat', seatRouter);
 
 app.use((req, res, next) => {
