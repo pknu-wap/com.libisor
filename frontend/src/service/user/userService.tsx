@@ -1,29 +1,41 @@
-import UserRepository from "../../domain/user/userRepository";
+import CheckUsernameRequestDto from "../../domain/user/CheckUsernameRequestDto";
+import CheckPasswordRequestDto from "../../domain/user/CheckPasswordRequestDto";
+import JoinRequestDto from "../../domain/user/JoinRequestDto";
 
 interface UserServiceInterface {
-    checkUsernameExist: (username: string) => boolean
-    checkPassword: (username: string, password: string) => boolean
-    joinUser: (id: string, password: string) => string
+    checkUsernameExist: (username: string) => Promise<boolean>
+    checkPassword: (username: string, password: string) => Promise<boolean>
+    joinUser: (id: string, password: string) => Promise<string>
 }
 
 const UserService: UserServiceInterface = {
-    checkUsernameExist: (id) => {
-        //todo replace code to production
-        //temporary code for checking login function
-        //POST /auth/checkUsernameExist
-        return !!UserRepository.find(v => v.id === id)
-    }, checkPassword: (id, password) => {
-        //todo replace code to production
-        //temporary code for checking login function
-        //POST /auth/login
-        return !!UserRepository.find(v => v.id === id && v.password === password)
-    }, joinUser: (id, password) => {
-        //todo replace code to production
-        //temporary code for checking register function
-        //POST /auth/join
-        UserRepository.push({
-            id, password
-        })
+    checkUsernameExist: async (id) => {
+        return await (await fetch('/api/auth/checkUsernameExist', {
+            method: 'POST',
+            cache: "no-cache",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id} as CheckUsernameRequestDto)
+        })).json() as boolean
+    }, checkPassword: async (id, password) => {
+        return await (await fetch('/api/auth/login', {
+            method: 'POST',
+            cache: "no-cache",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id, password} as CheckPasswordRequestDto)
+        })).json() as boolean
+    }, joinUser: async (id, password) => {
+        await (await fetch('/api/auth/join', {
+            method: 'POST',
+            cache: "no-cache",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id, password} as JoinRequestDto)
+        })).json()
         return id
     }
 }

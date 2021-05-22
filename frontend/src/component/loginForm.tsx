@@ -18,24 +18,28 @@ const LoginForm: React.FC<LoginPageProps> = ({setUsername}) => {
 
     const submitUser = () => {
         if (!passwordFormVisible) {
-            if (UserService.checkUsernameExist(usernameValue)) {
-                setPasswordFormVisible(true)
-                setRegisterFormVisible(false)
-            } else {
-                setPasswordFormVisible(false)
-                setRegisterFormVisible(true)
-                if (registerFormVisible) {
-                    UserService.joinUser(usernameValue, passwordValue)
-                    setUsername(usernameValue)
+            UserService.checkUsernameExist(usernameValue).then(r => {
+                if (r) {
+                    setPasswordFormVisible(true)
+                    setRegisterFormVisible(false)
+                } else {
+                    setPasswordFormVisible(false)
+                    setRegisterFormVisible(true)
+                    if (registerFormVisible) {
+                        UserService.joinUser(usernameValue, passwordValue)
+                        setUsername(usernameValue)
+                    }
                 }
-            }
+            })
         } else {
-            if (UserService.checkPassword(usernameValue, passwordValue)) {
-                setWrongPwAlertVisible(false)
-                setUsername(usernameValue)
-            } else {
-                setWrongPwAlertVisible(true)
-            }
+            UserService.checkPassword(usernameValue, passwordValue).then(r => {
+                if (r) {
+                    setWrongPwAlertVisible(false)
+                    setUsername(usernameValue)
+                } else {
+                    setWrongPwAlertVisible(true)
+                }
+            })
         }
     }
 
@@ -80,8 +84,8 @@ const LoginForm: React.FC<LoginPageProps> = ({setUsername}) => {
                             ? <Alert variant={'danger'}>틀린 암호입니다. 다시 입력해 주십시오.</Alert>
                             : null}
                         {registerFormVisible
-                        ? <Alert variant={'primary'}>새회원이시군요! 가입양식을 기입해 주십시오.</Alert>
-                        :null}
+                            ? <Alert variant={'primary'}>새회원이시군요! 가입양식을 기입해 주십시오.</Alert>
+                            : null}
                     </Col>
                 </Row>
                 <Common.Blank/>

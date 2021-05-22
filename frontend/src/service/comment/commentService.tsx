@@ -1,37 +1,48 @@
+import CommentSaveRequestDto from "../../domain/comment/CommentSaveRequestDto";
 import Comment from "../../domain/comment/Comment";
-import CommentRepository from "../../domain/comment/commentRepository";
+import CommentDeleteRequestDto from "../../domain/comment/CommentDeleteRequestDto";
 
 interface CommentServiceInterface {
-    getAll: () => Comment[]
-    postComment: (id: string, body: string) => boolean
-    deleteComment: (user: string, createdAt: Date) => boolean
+    getAll: () => Promise<Comment[]>
+    postComment: (comment: CommentSaveRequestDto) => Promise<boolean>
+    deleteComment: (commentId: number) => Promise<boolean>
 }
 
 const CommentService: CommentServiceInterface = {
-    //todo replace code to production
-    //temporary code for checking comment function
-    //GET /comment
-    getAll: () => {
-        return CommentRepository.sort((a, b) => {
+    getAll: async () => {
+        const body = (await (await fetch('/api/comment')).json()).map((v: any) => {
+            const [year, month, date, hour, min, sec] = v['time'].replace(/T/ig, '-').replace(/:/ig, '-').split('-')
+            const createdAt = new Date()
+            createdAt.setUTCFullYear(year, month, date)
+            createdAt.setUTCHours(hour, min, sec)
+            return {...v, createdAt}
+        }).map((v: Comment) => {
+            return v
+        })
+        return body.sort((a: Comment, b: Comment) => {
             return b.createdAt.valueOf() - a.createdAt.valueOf()
         })
     },
-    //todo replace code to production
-    //temporary code for checking comment function
-    //POST /comment
-    postComment: (id, body) => {
-        CommentRepository.push({
-            id, comment: body, createdAt: new Date()
+    postComment: async (comment) => {
+        await fetch('/api/comment', {
+            method: 'POST',
+            cache: "no-cache",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(comment)
         })
         return true
     },
-    //todo replace code to production
-    //temporary code for checking comment function
-    //DELETE /comment
-    deleteComment: (user, createdAt) => {
-        CommentRepository.splice(CommentRepository.findIndex(v => {
-            return v.id === user && v.createdAt === createdAt
-        }), 1)
+    deleteComment: async (commentId) => {
+        await fetch('/api/comment', {
+            method: 'POST',
+            cache: "no-cache",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({commentId} as CommentDeleteRequestDto)
+        })
         return true
     }
 }

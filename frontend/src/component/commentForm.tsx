@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Card, Col, FormControl, InputGroup, Row} from "react-bootstrap";
 import CommentService from "../service/comment/commentService";
 import Common from "./common";
+import Comment from "../domain/comment/Comment";
+import CommentSaveRequestDto from "../domain/comment/CommentSaveRequestDto";
 
 interface CommentFormProps {
     username: string | null
@@ -9,7 +11,7 @@ interface CommentFormProps {
 
 
 const CommentForm: React.FC<CommentFormProps> = ({username}) => {
-    const comment = (writer: string, body: string, date: Date) => {
+    const comment = (commentId: number, writer: string, body: string, date: Date) => {
         return (
             <Row className={'mb-3'}>
                 <Col>
@@ -22,28 +24,36 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
                                 {date.toLocaleString()}{' '}
                             </small>
                             {writer === username ? (
-                                <small onClick={() => deleteComment(writer, date)}>삭제</small>) : null}
+                                <small onClick={() => deleteComment(commentId)}>삭제</small>) : null}
                         </Card.Footer>
                     </Card>
                 </Col>
             </Row>
         )
     }
-    const [commentForms, setCommentForms] = useState(CommentService.getAll().map(v => {
-            return comment(v.id, v.comment, v.createdAt)
-        })),
-        reloadComments = () => setCommentForms(CommentService.getAll().map(v => {
-            return comment(v.id, v.comment, v.createdAt)
+    const [commentForms, setCommentForms] = useState(Array()),
+        reloadComments = async () => setCommentForms((await CommentService.getAll()).map((v: Comment) => {
+            return comment(v.id, v.users.localId, v.content, v.createdAt)
         }))
     const [newCommentBody, setNewCommentBody] = useState('')
-    const postComment = (username: string, body: string) => {
-        CommentService.postComment(username, body)
-    }
-    const deleteComment = async (writer: string, createdAt: Date) => {
-        if (CommentService.deleteComment(writer, createdAt)) await alert('코멘트 삭제 처리되었습니다.')
-        else await alert('코멘트 삭제 중 오류 발생. 관리자 문의 요.')
+    const postComment = async (username: string, body: string) => {
+        const comment: CommentSaveRequestDto = {
+            id: username,
+            comment: body
+        }
+        await CommentService.postComment(comment)
         await reloadComments()
     }
+    const deleteComment = async (commentId: number) => {
+        await CommentService.deleteComment(commentId)
+        await alert('코멘트 삭제 처리되었습니다.')
+        await reloadComments()
+    }
+    useEffect(() => {
+        (async () => {
+            await reloadComments()
+        })()
+    })
     return (
         <>
             <Row className={'mb-4'}>
