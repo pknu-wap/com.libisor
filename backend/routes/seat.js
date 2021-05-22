@@ -4,7 +4,7 @@ const { ReadingRoom, Seat, SeatRecord } = require('../models');
 const router = express.Router();
 
 // '/:readingRoom/(:seatNumber)?'
-router.get('/:readingRoom', async (req, res) => {
+router.get('/:readingRoom', async (req, res, next) => {
     try{
        /* let seatNum;
     if(req.params.seatNumber == null)
@@ -42,6 +42,7 @@ router.get('/:readingRoom', async (req, res) => {
                     order: [ [ 'createdAt', 'DESC' ]]
                 }
             });
+            res.json(record);
             let result = [];
             result.push({});
             await record.forEach(e => {
