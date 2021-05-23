@@ -40,10 +40,7 @@
         layerArr.filter(v => !!v).forEach(v => {
             v.addEventListener('click', async () => {
                 const seatNumber = parseInt(v.id.slice(5, v.id.length))
-                // const seatData = (await (await fetch('/seat/CNTMRRNTB')).json()).filter(v => v.seatNumber === seatNumber)
-                const seatData = {
-                    time: '2021-05-18T00:34:21'
-                }
+                const seatData = (await (await fetch('/api/seat/CNTMRRNTB')).json()).filter(v => v.seatNumber === seatNumber)
                 const [date, time] = seatData.time.split('T')
                 alert(
                     `좌석 ${seatNumber}번\n${date} ${time} 반납 예정입니다.`
