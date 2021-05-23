@@ -31,7 +31,7 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
             </Row>
         )
     }
-    const [commentForms, setCommentForms] = useState(Array()),
+    const [commentForms, setCommentForms] = useState([] as JSX.Element[]),
         reloadComments = async () => setCommentForms((await CommentService.getAll()).map((v: Comment) => {
             return comment(v.id, v.users.localId, v.content, v.createdAt)
         }))
