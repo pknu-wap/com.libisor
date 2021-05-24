@@ -26,7 +26,6 @@
 </div>
 <script>
     (async () => {
-        //todo when production, fetch url that set dummy data should replace to api server that serve in same domain
         const href = '?' + window.location.href.split('?')[1];
         const libName = new URLSearchParams(href).get('libName')
         document.querySelector("#seat").innerHTML = await (await fetch(`/api/${libName}`)).text()
