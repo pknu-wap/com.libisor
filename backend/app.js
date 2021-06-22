@@ -47,10 +47,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use('/', path.join(__dirname, '/build/index.html');
+app.use(express.static(path.join(__dirname, '/build')));
+
 app.use('/api/auth', authRouter);
 app.use('/api/comment', cmntRouter);
 app.use('/api/seat', seatRouter);
+
+app.use('*', function (req, res) {
+    res.sendFile(path.join(__dirname, '/build/index.html'));
+  });
 
 app.use((req, res, next) => {
     const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

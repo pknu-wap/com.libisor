@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get(async (req, res, next) => { // 최근 코멘트 10개 날리기
     const posts = await Post.findAll({
-        limit: 15,
+        limit: 10,
         order: [ [ 'createedAt', 'DESC' ]],
         attributes: ['id', 'content', 'createdAt', 'UserId'],
         include: {
