@@ -42,7 +42,7 @@ router.get('/:readingRoom', async (req, res, next) => {
                     order: [ [ 'createdAt', 'DESC' ]]
                 }
             });
-            res.json(record);
+            //res.json(record);
             let result = [];
             result.push({});
             await record.forEach(e => {
@@ -50,7 +50,7 @@ router.get('/:readingRoom', async (req, res, next) => {
                 data["seatNumber"] = e.seatNumber;
                 data["taken"] = e.SeatRecords[0].takeOrReturn;
                 data["time"] = e.SeatRecords[0].createdAt.toISOString().replace('.000Z','');
-                let timeUsed = Math.floor(( new Date - new Date(data["time"]))/3600000);
+                let timeUsed =  Math.floor(( new Date - new Date(data["time"]))/3600000);
                 data["used"] = timeUsed;
                 if(data["taken"]===1) {
                     switch(timeUsed) {
@@ -64,7 +64,7 @@ router.get('/:readingRoom', async (req, res, next) => {
                 }
                 result.push(data);
             });
-            res.json(result);
+            return res.json(result);
        // }
     }
 } catch (error) {

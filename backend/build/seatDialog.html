@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: url(https://fonts.gstatic.com/s/opensans/v18/mem5YaGs126MiZpBA-UNirkOUuhpKKSTjw.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div id="seat">
+</div>
+<script>
+    (async () => {
+        const href = '?' + window.location.href.split('?')[1];
+        const libName = new URLSearchParams(href).get('libName')
+        document.querySelector("#seat").innerHTML = await (await fetch(`/api/${libName}`)).text()
+        document.querySelector("#seat > center > table:nth-child(1)").remove()
+        document.querySelector('#seat').innerHTML = document.querySelector("#maptemp").innerHTML
+        console.log(!!document.querySelector(`#Layer782`))
+        const layerArr = []
+        do {
+            layerArr.push(document.querySelector(`#Layer${layerArr.length + 1}`))
+        } while (!!layerArr[layerArr.length - 1])
+        layerArr.filter(v => !!v).forEach(v => {
+            v.addEventListener('click', async () => {
+                const seatNumber = parseInt(v.id.slice(5, v.id.length))
+                const seatData = (await (await fetch('/api/seat/CNTMRRNTB')).json()).filter(v => v.seatNumber === seatNumber)
+                const [date, time] = seatData.time.split('T')
+                alert(
+                    `좌석 ${seatNumber}번\n${date} ${time} 반납 예정입니다.`
+                )
+            })
+        })
+    })()
+</script>
+</body>
+</html>
