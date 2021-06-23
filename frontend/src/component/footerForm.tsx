@@ -1,7 +1,7 @@
 import {Col, Container, Row} from "react-bootstrap";
 import Common from "./common";
 
-const Footer = () => {
+const FooterForm = () => {
     return (
         <>
             <hr/>
@@ -30,4 +30,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default FooterForm

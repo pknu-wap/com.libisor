@@ -4,18 +4,18 @@ import Logo from '../assets/image/pknu.png'
 
 interface NavBarProps {
     username: string | null
-    setLoginFormVisible: Dispatch<SetStateAction<boolean>>
+    setBeforeLoginFormVisible: Dispatch<SetStateAction<boolean>>
     setProfileFormVisible: Dispatch<SetStateAction<boolean>>
-    loginFormVisible: boolean
+    setIsLoginForm: Dispatch<SetStateAction<boolean>>
     profileFormVisible: boolean
     setLibName: Dispatch<SetStateAction<string>>
 }
 
 const NavBar: React.FC<NavBarProps> = ({
                                            username,
-                                           setLoginFormVisible,
-                                           loginFormVisible,
+                                           setBeforeLoginFormVisible,
                                            setProfileFormVisible,
+                                           setIsLoginForm,
                                            profileFormVisible,
                                            setLibName
                                        }) => {
@@ -35,11 +35,11 @@ const NavBar: React.FC<NavBarProps> = ({
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse>
                     <Nav className="mr-auto">
-                        <NavItem>
-                            <div onClick={() => setLibName('mireaF1Dummy')}>
-                                <Nav.Link>미래로일반열람실</Nav.Link>
-                            </div>
-                        </NavItem>
+                        {/*<NavItem>*/}
+                        {/*    <div onClick={() => setLibName('mireaF1Dummy')}>*/}
+                        {/*        <Nav.Link>미래로일반열람실</Nav.Link>*/}
+                        {/*    </div>*/}
+                        {/*</NavItem>*/}
                         <NavItem>
                             <div onClick={() => setLibName('mireaB1Dummy')}>
                                 <Nav.Link>미래로노트북열람실</Nav.Link>
@@ -52,10 +52,24 @@ const NavBar: React.FC<NavBarProps> = ({
                                 <Button variant="outline-primary"
                                         onClick={() => setProfileFormVisible(!profileFormVisible)}>{username} 님</Button>
                             </Form>
-                            : <Form inline>
-                                <Button variant="outline-primary" onClick={() => setLoginFormVisible(!loginFormVisible)}>회원가입
-                                    / 로그인</Button>
-                            </Form>
+                            : <>
+                                <NavItem>
+                                    <div onClick={() => {
+                                        setBeforeLoginFormVisible(true)
+                                        setIsLoginForm(false)
+                                    }}>
+                                        <Nav.Link>회원가입</Nav.Link>
+                                    </div>
+                                </NavItem>
+                                <NavItem>
+                                    <div onClick={() => {
+                                        setBeforeLoginFormVisible(true)
+                                        setIsLoginForm(true)
+                                    }}>
+                                        <Nav.Link>로그인</Nav.Link>
+                                    </div>
+                                </NavItem>
+                            </>
                     }
                 </Navbar.Collapse>
             </Navbar>
