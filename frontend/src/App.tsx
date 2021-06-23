@@ -3,33 +3,35 @@ import NavBar from "./component/navBar";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Common from './component/common';
 import IndexForm from "./component/indexForm";
-import LoginForm from "./component/loginForm";
+import BeforeLoginForm from "./component/beforeLoginForm";
 import ProfileForm from "./component/profileForm";
-import Footer from "./component/Footer";
+import FooterForm from "./component/footerForm";
 
 function App() {
     const [username, setUsername] = useState<string | null>(null)
-    const [loginFormVisible, setLoginFormVisible] = useState<boolean>(false)
+    const [beforeLoginFormVisible, setBeforeLoginFormVisible] = useState<boolean>(false)
+    const [isLoginForm, setIsLoginForm] = useState<boolean>(false)
     const [profileFormVisible, setProfileFormVisible] = useState<boolean>(false)
     const [libName, setLibName] = useState<string>('mireaF1Dummy')
     return (
         <div>
             <NavBar
-                setLoginFormVisible={setLoginFormVisible}
-                loginFormVisible={loginFormVisible}
-                setProfileFormVisible={setProfileFormVisible}
+                setBeforeLoginFormVisible={setBeforeLoginFormVisible}
+                setIsLoginForm={setIsLoginForm}
                 profileFormVisible={profileFormVisible}
+                setProfileFormVisible={setProfileFormVisible}
                 username={username}
                 setLibName={setLibName}/>
             <Common.Blank/>
-            {!username && loginFormVisible
-                ? <LoginForm setUsername={setUsername}/>
+            {!username && beforeLoginFormVisible
+                ? <BeforeLoginForm setBeforeLoginFormVisible={setBeforeLoginFormVisible} setUsername={setUsername}
+                                   isLoginForm={isLoginForm} setIsLoginForm={setIsLoginForm}/>
                 : null}
             {username && profileFormVisible
                 ? <ProfileForm setProfileFormVisible={setProfileFormVisible} setUsername={setUsername}/>
                 : null}
             <IndexForm username={username} libName={libName}/>
-            <Footer/>
+            <FooterForm/>
         </div>
     )
 }
