@@ -3,7 +3,6 @@ import {Alert, Button, Card, Col, FormControl, InputGroup, Row} from "react-boot
 import UserService from "../service/user/userService";
 
 interface RegisterFormProps {
-    //회원가입 완료 시 로그인화면으로 전환
     setIsLoginForm: Dispatch<React.SetStateAction<boolean>>
 }
 
@@ -12,17 +11,40 @@ const RegisterForm: React.FC<RegisterFormProps> = ({setIsLoginForm}) => {
     const [passwordValue, setPasswordValue] = useState<string>('')
     const [alertType, setAlertType] = useState<string>('E_NORMAL')
     const requestRegister = () => {
-        if (!!usernameValue || !!passwordValue) {
+        if (!usernameValue || !passwordValue) {
+            setAlertType('E_BLANK')
+        } else {
             UserService.joinUser(usernameValue, passwordValue).then(r => {
-                if (r) {
+                if (r.status) {
                     alert(`${usernameValue}님 환영합니다!`)
                     setIsLoginForm(true)
-                } else setAlertType('E_USERNAME_EXT')
+                }else {
+                    switch (r.message) {
+                        case 'E_EXIST':
+                            setAlertType('E_EXIST');
+                            break;
+                        default:
+                            setAlertType('E_ERROR');
+                            break;
+                    }
+                }
             }).catch(e => {
-                alert('회원가입 중 오류 발생. 관리자에게 문의 바람.')
+                setAlertType('E_ERROR')
             })
-        } else {
-            setAlertType('E_BLANK')
+        }
+    }
+    const makeAlert = () => {
+        switch (alertType) {
+            case 'E_NORMAL':
+                return <Alert variant={'primary'}>새회원이시군요! 가입양식을 기입해 주십시오. (Registration)</Alert>
+            case 'E_BLANK':
+                return <Alert variant={'success'}>가입양식을 기입해 주십시오 (Fulfill please)</Alert>
+            case 'E_EXIST':
+                return <Alert variant={'primary'}>중복된 유저명이 존재합니다. 다시 시도 바랍니다. (Username exist)</Alert>
+            case 'E_ERROR':
+                return <Alert variant={'danger'}>회원가입 중 오류 발생. 관리자에게 문의 바람. (Error, contact to admin)</Alert>
+            default:
+                return null
         }
     }
 
@@ -74,13 +96,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({setIsLoginForm}) => {
                     </Button>
                 </Col>
                 <Col>
-                    {alertType === 'E_NORMAL'
-                        ? <Alert variant={'primary'}>새회원이시군요! 가입양식을 기입해 주십시오.</Alert>
-                        : (alertType === 'E_BLANK'
-                            ? <Alert variant={'danger'}>가입양식을 기입해 주십시오.</Alert>
-                            : (alertType === 'E_USERNAME_EXT'
-                                ? <Alert variant={'primary'}>중복된 유저명이 존재합니다. 다시 시도 바랍니다.</Alert>
-                                : null))}
+                    {makeAlert()}
                 </Col>
             </Row>
         </>

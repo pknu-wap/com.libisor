@@ -10,16 +10,41 @@ interface LoginFormProps {
 const LoginForm: React.FC<LoginFormProps> = ({setUsername, setBeforeLoginFormVisible}) => {
     const [usernameValue, setUsernameValue] = useState<string>('')
     const [passwordValue, setPasswordValue] = useState<string>('')
-    const [wrongPwAlertVisible, setWrongPwAlertVisible] = useState<boolean>(false)
+    const [alertType, setAlertType] = useState<string>('')
     const requestLogin = () => {
-        UserService.loginUser(usernameValue, passwordValue).then(r => {
-            if (r) {
-                setUsername(usernameValue)
-                setBeforeLoginFormVisible(false)
-            } else setWrongPwAlertVisible(true)
-        }).catch(e => {
-            alert('로그인 중 오류 발생. 관리자에게 문의 바람.')
-        })
+        if (!usernameValue || !passwordValue) {
+            setAlertType('E_BLANK')
+        } else {
+            UserService.loginUser(usernameValue, passwordValue).then(r => {
+                if (r.status) {
+                    setUsername(usernameValue)
+                    setBeforeLoginFormVisible(false)
+                }else {
+                    switch (r.message) {
+                        case 'E_WRONG':
+                            setAlertType('E_WRONG');
+                            break;
+                        default:
+                            setAlertType('E_ERROR');
+                            break;
+                    }
+                }
+            }).catch(e => {
+                setAlertType('E_ERROR')
+            })
+        }
+    }
+    const makeAlert = () => {
+        switch (alertType) {
+            case 'E_BLANK':
+                return <Alert variant={'success'}>아이디와 암호를 입력하십시오. (Fulfill please)</Alert>
+            case 'E_WRONG':
+                return <Alert variant={'danger'}>회원정보를 찾을 수 없습니다. 다시 입력해 주십시오. (No User)</Alert>
+            case 'E_ERROR':
+                return <Alert variant={'danger'}>회원가입 중 오류 발생. 관리자에게 문의 바람. (Error, contact to admin)</Alert>
+            default:
+                return null
+        }
     }
 
     return (
@@ -58,9 +83,7 @@ const LoginForm: React.FC<LoginFormProps> = ({setUsername, setBeforeLoginFormVis
                     </Button>
                 </Col>
                 <Col>
-                    {wrongPwAlertVisible
-                        ? <Alert variant={'danger'}>회원정보를 찾을 수 없습니다. 다시 입력해 주십시오.</Alert>
-                        : null}
+                    {makeAlert()}
                 </Col>
             </Row>
         </>
