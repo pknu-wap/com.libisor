@@ -11,14 +11,14 @@ router.post('/join', isNotLoggedIn, async ( req, res, next) => {
     try{
         const exUser = await User.findOne({ where: { localId: id }});
         if (exUser) {
-            return res.redirect(`/?error=exist`);
+            return  res.status(412).send('Exists');
         } 
         const hash = await bcrypt.hash(password, 12);
         await User.create({
             localId: id,
             password: hash
         });
-        return res.redirect('/');
+        return  res.status(200).send(id);
     } catch (error) {
         console.error(error);
         return next(error);
@@ -26,20 +26,21 @@ router.post('/join', isNotLoggedIn, async ( req, res, next) => {
 });
 
 router.post('login', isNotLoggedIn, (req, res, next) => {
+    const { id } = req.body;
     passport.authenticate('local', (authError, user, info) => {
         if (authError) {
             console.error(authError);
             return next(authError);
         }
         if (!user) {
-            return res.redirect(`/?error=${info.message}`);
+            return  res.status(412).send('NOT EXISTS');
         }
         return req.login(user, (loginError) => {
             if (loginError) {
                 console.error(loginError);
                 return next(loginError);
             }
-            return res.redirect('/');
+            return  res.status(200).send(id);
         });
     }) (req, res, next); // middleware in middleware
 });
@@ -47,7 +48,7 @@ router.post('login', isNotLoggedIn, (req, res, next) => {
 router.get('/logout', isLoggedIn, (req, res) => {
     req.logout();
     req.session.destroy();
-    res.redirect('/');
+    return  res.status(200).send('logout');
 });
 
 module.exports = router;

@@ -31,7 +31,6 @@
         document.querySelector("#seat").innerHTML = await (await fetch(`/api/${libName}`)).text()
         document.querySelector("#seat > center > table:nth-child(1)").remove()
         document.querySelector('#seat').innerHTML = document.querySelector("#maptemp").innerHTML
-        console.log(!!document.querySelector(`#Layer782`))
         const layerArr = []
         do {
             layerArr.push(document.querySelector(`#Layer${layerArr.length + 1}`))

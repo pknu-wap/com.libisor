@@ -32,13 +32,14 @@ router.post(isLoggedIn, async (req, res, next) => { // 코멘트 작성
         UserId: userId.id,
         content: comment
     });
-    res.redirect('/');
+    return res.status(200).send('ok');
 });
 
 router.delete(isLoggedIn, async (req, res, next) => {
     const { commentId } = req.body;
     // 해당 댓글 UserId와 세션의 user id가 같은지 비교후 맞으면
     await Post.destroy({where: {id: commentId}});
+    res.redirect('/');
 });
 
 module.exports = router;
