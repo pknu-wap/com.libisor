@@ -24,7 +24,7 @@ const CommentService: CommentServiceInterface = {
         })
     },
     postComment: async (comment) => {
-        await fetch('/api/comment', {
+        const response = await fetch('/api/comment', {
             method: 'POST',
             cache: "no-cache",
             headers: {
@@ -32,7 +32,7 @@ const CommentService: CommentServiceInterface = {
             },
             body: JSON.stringify(comment)
         })
-        return true
+        return await response.text() === 'ok';
     },
     deleteComment: async (commentId) => {
         await fetch('/api/comment', {
