@@ -2,11 +2,13 @@ const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
-const { User, Post } = require('../models');
+//const { User, Post } = require('../models');
+const User = require('../models/user');
+const Post = require('../models/post');
 
 const router = express.Router();
 
-router.get(async (req, res, next) => { // 최근 코멘트 10개 날리기
+router.get(async (req, res) => { // 최근 코멘트 10개 날리기
     const posts = await Post.findAll({
         limit: 10,
         order: [ [ 'createedAt', 'DESC' ]],
@@ -20,8 +22,9 @@ router.get(async (req, res, next) => { // 최근 코멘트 10개 날리기
     res.json(posts);
 });
 
-router.post(isLoggedIn, async (req, res, next) => { // 코멘트 작성 
+router.post(isLoggedIn, async (req, res) => { // 코멘트 작성 
     const { id , comment } = req.body;
+    console.log('hkab');
     const userId = await Post.findOne({
         attributes: ['id'],
         where: {localId : id}
@@ -35,7 +38,7 @@ router.post(isLoggedIn, async (req, res, next) => { // 코멘트 작성
     return res.status(200).send('ok');
 });
 
-router.delete(isLoggedIn, async (req, res, next) => {
+router.delete(isLoggedIn, async (req, res) => {
     const { commentId } = req.body;
     // 해당 댓글 UserId와 세션의 user id가 같은지 비교후 맞으면
     await Post.destroy({where: {id: commentId}});
