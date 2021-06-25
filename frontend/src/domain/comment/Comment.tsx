@@ -1,10 +1,6 @@
-interface users {
-    localId: string
-}
-
 export default interface Comment {
-    id: number
+    commentId: number
     createdAt: Date
     content: string
-    users: users
+    writer: string
 }

@@ -5,19 +5,14 @@ import CommentDeleteRequestDto from "../../domain/comment/CommentDeleteRequestDt
 interface CommentServiceInterface {
     getAll: () => Promise<Comment[]>
     postComment: (comment: CommentSaveRequestDto) => Promise<boolean>
-    deleteComment: (commentId: number) => Promise<boolean>
+    deleteComment: (commentId: number, writer: string) => Promise<boolean>
 }
 
 const CommentService: CommentServiceInterface = {
     getAll: async () => {
-        const body = (await (await fetch('/api/comment')).json()).map((v: any) => {
-            const [year, month, date, hour, min, sec] = v['time'].replace(/T/ig, '-').replace(/:/ig, '-').split('-')
-            const createdAt = new Date()
-            createdAt.setUTCFullYear(year, month, date)
-            createdAt.setUTCHours(hour, min, sec)
-            return {...v, createdAt}
-        }).map((v: Comment) => {
-            return v
+        const response = await fetch('/api/comment')
+        const body = (await response.json()).map((v: Comment) => {
+            return {...v, createdAt: new Date(v.createdAt)}
         })
         return body.sort((a: Comment, b: Comment) => {
             return b.createdAt.valueOf() - a.createdAt.valueOf()
@@ -27,6 +22,7 @@ const CommentService: CommentServiceInterface = {
         const response = await fetch('/api/comment', {
             method: 'POST',
             cache: "no-cache",
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -34,14 +30,15 @@ const CommentService: CommentServiceInterface = {
         })
         return await response.text() === 'ok';
     },
-    deleteComment: async (commentId) => {
+    deleteComment: async (commentId, writer) => {
         await fetch('/api/comment', {
             method: 'POST',
             cache: "no-cache",
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({commentId} as CommentDeleteRequestDto)
+            body: JSON.stringify({commentId, writer} as CommentDeleteRequestDto)
         })
         return true
     }

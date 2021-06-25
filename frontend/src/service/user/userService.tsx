@@ -13,6 +13,7 @@ const UserService: UserServiceInterface = {
         const response = await (await fetch('/api/auth/login', {
             method: 'POST',
             cache: "no-cache",
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -39,6 +40,7 @@ const UserService: UserServiceInterface = {
         const response = await (await fetch('/api/auth/join', {
             method: 'POST',
             cache: "no-cache",
+            credentials: "include",
             headers: {
                 'Content-Type': 'application/json'
             },
