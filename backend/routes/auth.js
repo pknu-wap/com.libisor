@@ -25,7 +25,7 @@ router.post('/join', isNotLoggedIn, async ( req, res, next) => {
     }
 });
 
-router.post('login', isNotLoggedIn, (req, res, next) => {
+router.post('/login', isNotLoggedIn, (req, res, next) => {
     const { id } = req.body;
     passport.authenticate('local', (authError, user, info) => {
         if (authError) {

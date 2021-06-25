@@ -5,27 +5,43 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 //const { User, Post } = require('../models');
 const User = require('../models/user');
 const Post = require('../models/post');
+const { upsert } = require('../models/user');
 
 const router = express.Router();
 
-router.get(async (req, res) => { // 최근 코멘트 10개 날리기
+router.get('/', async (req, res) => { // 최근 코멘트 10개 날리기
     const posts = await Post.findAll({
         limit: 10,
-        order: [ [ 'createedAt', 'DESC' ]],
+        order: [ [ 'createdAt', 'DESC' ]],
         attributes: ['id', 'content', 'createdAt', 'UserId'],
+        /* belongsTo 상위를 못 가져오는 에러
         include: {
             model: User,
             attributes: ['localId'],
             limit: 1
-        }
+        } 
+        */
     });
-    res.json(posts);
+    let result = [];
+    for ( i in posts) {
+        const writer = await User.findOne({
+            attributes: ['localId'],
+            where: {id : posts[i].UserId}
+        });
+        let data = {};
+        data["commentId"] = posts[i].id;
+        data["writer"] = writer.localId;
+        data["content"] = posts[i].content;
+        data["createdAt"] = posts[i].createdAt;
+        result.push(data);
+    }
+    return res.json(result);
 });
 
-router.post(isLoggedIn, async (req, res) => { // 코멘트 작성 
+router.post('/', isLoggedIn, async (req, res) => { // 코멘트 작성 
     const { id , comment } = req.body;
     console.log('hkab');
-    const userId = await Post.findOne({
+    const userId = await User.findOne({
         attributes: ['id'],
         where: {localId : id}
     });
@@ -38,7 +54,7 @@ router.post(isLoggedIn, async (req, res) => { // 코멘트 작성
     return res.status(200).send('ok');
 });
 
-router.delete(isLoggedIn, async (req, res) => {
+router.delete('/', isLoggedIn, async (req, res) => {
     const { commentId } = req.body;
     // 해당 댓글 UserId와 세션의 user id가 같은지 비교후 맞으면
     await Post.destroy({where: {id: commentId}});
