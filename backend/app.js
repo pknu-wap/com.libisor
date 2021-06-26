@@ -49,9 +49,9 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, '/build')));
 
-app.use('/source/auth', authRouter);
-app.use('/source/comment', cmntRouter);
-app.use('/source/seat', seatRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/comment', cmntRouter);
+app.use('/api/seat', seatRouter);
 
 app.use('*', function (req, res) {
     res.sendFile(path.join(__dirname, '/build/index.html'));

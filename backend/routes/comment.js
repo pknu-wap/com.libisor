@@ -58,7 +58,7 @@ router.delete('/', isLoggedIn, async (req, res) => {
     const { commentId } = req.body;
     // 해당 댓글 UserId와 세션의 user id가 같은지 비교후 맞으면
     await Post.destroy({where: {id: commentId}});
-    res.redirect('/');
+    return res.status(200).send('deleted');
 });
 
 module.exports = router;
