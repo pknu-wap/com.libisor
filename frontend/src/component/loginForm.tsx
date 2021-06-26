@@ -17,7 +17,9 @@ const LoginForm: React.FC<LoginFormProps> = ({setUsername, setBeforeLoginFormVis
         } else {
             UserService.loginUser(usernameValue, passwordValue).then(r => {
                 if (r.status) {
-                    setUsername(usernameValue)
+                    UserService.getUsername().then(r => {
+                        setUsername(r)
+                    })
                     setBeforeLoginFormVisible(false)
                 }else {
                     switch (r.message) {
