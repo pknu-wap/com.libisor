@@ -24,7 +24,10 @@ const IndexForm: React.FC<IndexFormProps> = ({username, libName}) => {
                         <small className={'text-muted'}>
                             <ol>
                                 <li>
-                                    붉은 색은 사용 중, 회색은 가용한 좌석입니다.
+                                    적색은 사용 중, 회색은 가용한 좌석입니다.
+                                </li>
+                                <li>
+                                    주황색은 대여 6시간 임박, 노란색은 12시간 임박한 좌석으로 반납이 임박한 좌석입니다.
                                 </li>
                                 <li>
                                     좌석을 클릭하여 대여 및 반납시간 확인 가능합니다.

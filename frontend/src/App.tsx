@@ -12,7 +12,7 @@ function App() {
     const [beforeLoginFormVisible, setBeforeLoginFormVisible] = useState<boolean>(false)
     const [isLoginForm, setIsLoginForm] = useState<boolean>(false)
     const [profileFormVisible, setProfileFormVisible] = useState<boolean>(false)
-    const [libName, setLibName] = useState<string>('mireaF1Dummy')
+    const [libName, setLibName] = useState<string>('mireaB1')
     return (
         <div>
             <NavBar

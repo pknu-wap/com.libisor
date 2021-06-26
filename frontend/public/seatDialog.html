@@ -28,17 +28,39 @@
     (async () => {
         const href = '?' + window.location.href.split('?')[1];
         const libName = new URLSearchParams(href).get('libName')
-        document.querySelector("#seat").innerHTML = await (await fetch(`/api/${libName}`)).text()
+        document.querySelector("#seat").innerHTML = await (await fetch(`/source/${libName}`)).text()
         document.querySelector("#seat > center > table:nth-child(1)").remove()
         document.querySelector('#seat').innerHTML = document.querySelector("#maptemp").innerHTML
         const layerArr = []
         do {
             layerArr.push(document.querySelector(`#Layer${layerArr.length + 1}`))
         } while (!!layerArr[layerArr.length - 1])
+        for (const v1 of layerArr.filter(v => !!v)) {
+            const seatNumber = parseInt(v1.id.slice(5, v1.id.length))
+            const seatData = (await (await fetch('/api/seat/CNTMRRNTB')).json()).filter(v => v.seatNumber === seatNumber)
+            console.log(`#Layer${seatNumber} > table > tbody > tr > td`)
+            const td = document.querySelector(`#Layer${seatNumber} > table > tbody > tr > td`)
+            switch (seatData.taken) {
+                case 0:
+                    td.setAttribute('bgcolor', 'grey')
+                    break
+                case 1:
+                    td.setAttribute('bgcolor', 'red')
+                    break
+                case 2:
+                    td.setAttribute('bgcolor', '#f98404')
+                    break
+                case 3:
+                    td.setAttribute('bgcolor', '#f7fd04')
+                    document.querySelector(`#Layer${seatNumber} > table > tbody > tr > td > font`)
+                        .setAttribute('style', 'color:black;font-size:10pt;font-weight:900;')
+                    break
+            }
+        }
         layerArr.filter(v => !!v).forEach(v => {
             v.addEventListener('click', async () => {
                 const seatNumber = parseInt(v.id.slice(5, v.id.length))
-                const seatData = (await (await fetch('/api/seat/CNTMRRNTB')).json()).filter(v => v.seatNumber === seatNumber)
+                const seatData = (await (await fetch('/api/seat/CNTMRRNTB')).json()).filter(v => v.seatNumber === seatNumber)[0]
                 const [date, time] = seatData.time.split('T')
                 alert(
                     `좌석 ${seatNumber}번\n${date} ${time} 반납 예정입니다.`
