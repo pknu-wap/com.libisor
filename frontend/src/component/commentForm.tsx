@@ -31,17 +31,21 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
             </Row>
         )
     }
-    const [commentForms, setCommentForms] = useState([] as JSX.Element[]),
-        reloadComments = async () => setCommentForms((await CommentService.getAll()).map((v: Comment) => {
-            return comment(v.commentId, v.writer, v.content, v.createdAt)
-        }))
+    const [commentForms, setCommentForms] = useState([] as JSX.Element[])
+    const reloadComments = async () => setCommentForms((await CommentService.getAll()).map((v: Comment) => {
+        return comment(v.commentId, v.writer, v.content, v.createdAt)
+    }))
     const [newCommentBody, setNewCommentBody] = useState('')
+    const newCommentBodyChange = (value: string) => {
+        setNewCommentBody(value)
+    }
     const postComment = async (username: string, body: string) => {
         const comment: CommentSaveRequestDto = {
             id: username,
             comment: body
         }
         await CommentService.postComment(comment)
+        setNewCommentBody('')
         await reloadComments()
     }
     const deleteComment = async (commentId: number, writer: string) => {
@@ -53,7 +57,7 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
         (async () => {
             await reloadComments()
         })()
-    })
+    }, [])
     return (
         <>
             <Row className={'mb-4'}>
@@ -79,7 +83,8 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
                                 <InputGroup>
                                     <FormControl
                                         placeholder="새 코멘트 내용"
-                                        onChange={e => setNewCommentBody(e.target.value)}
+                                        value={newCommentBody}
+                                        onChange={e => newCommentBodyChange(e.target.value)}
                                     />
                                     <InputGroup.Append>
                                         <Button
