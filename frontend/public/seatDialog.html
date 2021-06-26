@@ -25,6 +25,11 @@
 <div id="seat">
 </div>
 <script>
+    /**
+     * 모든 좌석이 grey 처리된 dummy를 #seat에 innerhtml로 설정
+     * fetch로 모든 좌석 taken 값 가져와 색상설정
+     * 모든 좌석 div에 이벤트 리스너 통해 시간 alert 표시
+     */
     (async () => {
         const href = '?' + window.location.href.split('?')[1];
         const libName = new URLSearchParams(href).get('libName')
