@@ -6,6 +6,10 @@ const User = require('../models/user');
 
 const router = express.Router();
 
+router.get('/localId', isLoggedIn, async ( req, res, next) => {
+    return res.send(req.user.localId);
+});
+
 router.post('/join', isNotLoggedIn, async ( req, res, next) => {
     const { id ,password } = req.body;
     try{
