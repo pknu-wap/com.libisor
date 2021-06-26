@@ -9,7 +9,7 @@ require('dotenv').config();
 
 //const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
-const cmntRouter = require('./routes/comment'); 
+const cmntRouter = require('./routes/comment');
 const seatRouter = require('./routes/seat');
 
 const { sequelize } = require('./models');
@@ -19,7 +19,7 @@ const passportConfig = require('./passport');
 const app = express();
 passportConfig();
 app.set('port', process.env.PORT||8005);
-sequelize.sync( { force: false }) 
+sequelize.sync( { force: false })
 .then( () => {
     console.log('DB connection succeeded!');
 })
@@ -49,9 +49,9 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, '/build')));
 
-app.use('/api/auth', authRouter);
-app.use('/api/comment', cmntRouter);
-app.use('/api/seat', seatRouter);
+app.use('/source/auth', authRouter);
+app.use('/source/comment', cmntRouter);
+app.use('/source/seat', seatRouter);
 
 app.use('*', function (req, res) {
     res.sendFile(path.join(__dirname, '/build/index.html'));

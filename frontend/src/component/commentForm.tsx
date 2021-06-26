@@ -24,7 +24,7 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
                                 {date.toLocaleString()}{' '}
                             </small>
                             {writer === username ? (
-                                <small onClick={() => deleteComment(commentId)}>삭제</small>) : null}
+                                <small onClick={() => deleteComment(commentId, writer)}>삭제</small>) : null}
                         </Card.Footer>
                     </Card>
                 </Col>
@@ -33,7 +33,7 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
     }
     const [commentForms, setCommentForms] = useState([] as JSX.Element[]),
         reloadComments = async () => setCommentForms((await CommentService.getAll()).map((v: Comment) => {
-            return comment(v.id, v.users.localId, v.content, v.createdAt)
+            return comment(v.commentId, v.writer, v.content, v.createdAt)
         }))
     const [newCommentBody, setNewCommentBody] = useState('')
     const postComment = async (username: string, body: string) => {
@@ -44,8 +44,8 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
         await CommentService.postComment(comment)
         await reloadComments()
     }
-    const deleteComment = async (commentId: number) => {
-        await CommentService.deleteComment(commentId)
+    const deleteComment = async (commentId: number, writer: string) => {
+        await CommentService.deleteComment(commentId, writer)
         await alert('코멘트 삭제 처리되었습니다.')
         await reloadComments()
     }

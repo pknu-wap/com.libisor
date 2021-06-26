@@ -6,6 +6,8 @@ import UserLoginResponseDto from "../../domain/user/UserLoginResponseDto";
 interface UserServiceInterface {
     loginUser: (id: string, password: string) => Promise<UserLoginResponseDto>
     joinUser: (id: string, password: string) => Promise<UserJoinResponseDto>
+    getUsername: () => Promise<string | null>
+    logoutUser: () => Promise<boolean>
 }
 
 const UserService: UserServiceInterface = {
@@ -63,6 +65,16 @@ const UserService: UserServiceInterface = {
                     message: 'E_ERROR'
                 }
         }
+    }, logoutUser: async () => {
+        const response = await fetch('/logout', {
+            credentials: "include"
+        })
+        return response.ok
+    }, getUsername: async () => {
+        const response = await fetch('/api/auth/localid', {
+            credentials: "include"
+        })
+        return response.ok ? (await response.text()).slice(0, 51) : null
     }
 }
 

@@ -32,7 +32,7 @@ const CommentService: CommentServiceInterface = {
     },
     deleteComment: async (commentId, writer) => {
         await fetch('/api/comment', {
-            method: 'POST',
+            method: 'DELETE',
             cache: "no-cache",
             credentials: "include",
             headers: {

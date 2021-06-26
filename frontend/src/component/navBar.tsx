@@ -36,12 +36,12 @@ const NavBar: React.FC<NavBarProps> = ({
                 <Navbar.Collapse>
                     <Nav className="mr-auto">
                         {/*<NavItem>*/}
-                        {/*    <div onClick={() => setLibName('mireaF1Dummy')}>*/}
+                        {/*    <div onClick={() => setLibName('mireaF1')}>*/}
                         {/*        <Nav.Link>미래로일반열람실</Nav.Link>*/}
                         {/*    </div>*/}
                         {/*</NavItem>*/}
                         <NavItem>
-                            <div onClick={() => setLibName('mireaB1Dummy')}>
+                            <div onClick={() => setLibName('mireaB1')}>
                                 <Nav.Link>미래로노트북열람실</Nav.Link>
                             </div>
                         </NavItem>
