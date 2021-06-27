@@ -38,7 +38,7 @@ function App() {
                                            isLoginForm={isLoginForm} setIsLoginForm={setIsLoginForm}/>
                         : null}
                     {username && profileFormVisible
-                        ? <ProfileForm setProfileFormVisible={setProfileFormVisible} setUsername={setUsername}/>
+                        ? <ProfileForm setProfileFormVisible={setProfileFormVisible} setUsername={setUsername} username={username}/>
                         : null}
                     <IndexForm username={username} libName={libName}/>
                 </Route>
