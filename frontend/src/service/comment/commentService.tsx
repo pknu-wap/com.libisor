@@ -17,6 +17,12 @@ const CommentService: CommentServiceInterface = {
         return body.sort((a: Comment, b: Comment) => {
             return b.createdAt.valueOf() - a.createdAt.valueOf()
         })
+        // return [{
+        //     commentId: 1,
+        //     createdAt: new Date(),
+        //     content: 'sdafasdf',
+        //     writer: 'sadfsad'
+        // }]
     },
     postComment: async (comment) => {
         const response = await fetch('/api/comment', {

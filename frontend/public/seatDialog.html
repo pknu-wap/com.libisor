@@ -41,6 +41,11 @@
         do {
             layerArr.push(document.querySelector(`#Layer${layerArr.length + 1}`))
         } while (!!layerArr[layerArr.length - 1])
+        layerArr.filter(v => !!v).forEach(v => {
+            const seatNumber = parseInt(v.id.slice(5, v.id.length))
+            const fontTag = document.querySelector(`#Layer${seatNumber} > table > tbody > tr > td > font`)
+            fontTag.setAttribute('style', 'color:yellow;font-size:10pt;font-weight:900;cursor:pointer')
+        })
         const entireSeatData = await (await fetch('/api/seat/CNTMRRNTB')).json()
         layerArr.filter(v => !!v).forEach(v => {
             v.addEventListener('click', async () => {
@@ -80,7 +85,7 @@
                     case 3:
                         td.setAttribute('bgcolor', '#f7fd04')
                         document.querySelector(`#Layer${seatNumber} > table > tbody > tr > td > font`)
-                            .setAttribute('style', 'color:black;font-size:10pt;font-weight:900;')
+                            .setAttribute('style', 'color:black;font-size:10pt;font-weight:900;cursor:pointer')
                         break
                 }
             }

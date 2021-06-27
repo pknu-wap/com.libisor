@@ -20,11 +20,12 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
                             {writer} says: {body}
                         </Card.Body>
                         <Card.Footer>
-                            <small className="text-muted">
-                                {date.toLocaleString()}{' '}
-                            </small>
+                                {date.toLocaleString()}
+                                {' '}
                             {writer === username ? (
-                                <small onClick={() => deleteComment(commentId, writer)}>삭제</small>) : null}
+                                <small style={{
+                                    cursor: "pointer"
+                                }} onClick={() => deleteComment(commentId, writer)}>삭제</small>) : null}
                         </Card.Footer>
                     </Card>
                 </Col>
