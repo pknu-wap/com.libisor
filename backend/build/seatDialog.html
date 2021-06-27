@@ -68,7 +68,7 @@
                 const seatData = (await (await fetch('/api/seat/CNTMRRNTB')).json()).filter(v => v.seatNumber === seatNumber)[0]
                 const [date, time] = seatData.time.split('T')
                 alert(
-                    `좌석 ${seatNumber}번\n${date} ${time} 반납 예정입니다.`
+                    `좌석 ${seatNumber}번\n${date} ${time}부터 ${seatData.used}시간째 사용 중입니다.`
                 )
             })
         })
