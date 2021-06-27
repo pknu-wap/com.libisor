@@ -55,10 +55,10 @@ router.get('/:readingRoom', async (req, res, next) => {
                 if(data["taken"]===1) {
                     switch(timeUsed) {
                         case 5: // 6시간 임박
-                            data["taken"] = 3;
+                            data["taken"] = 2;
                             break;
                         case 11: // 12시간 임박
-                            data["taken"] = 4;
+                            data["taken"] = 3;
                             break;
                     }
                 }
