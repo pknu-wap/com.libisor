@@ -43,7 +43,7 @@ function App() {
                     <IndexForm username={username} libName={libName}/>
                 </Route>
                 <Route path={'*'}>
-                    404
+                    Not Found.
                 </Route>
             </Switch>
             <FooterForm/>

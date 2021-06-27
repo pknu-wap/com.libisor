@@ -66,7 +66,7 @@ const UserService: UserServiceInterface = {
                 }
         }
     }, logoutUser: async () => {
-        const response = await fetch('/logout', {
+        const response = await fetch('/api/auth/logout', {
             credentials: "include"
         })
         return response.ok
