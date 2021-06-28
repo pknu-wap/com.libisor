@@ -14,18 +14,19 @@ interface CommentFormProps {
 
 const CommentForm: React.FC<CommentFormProps> = ({username, setBeforeLoginForm, setIsLoginForm}) => {
     const requestLike = (commentId: number) => {
-        if (username) {
-            CommentService.requestLike(commentId).catch(e => {
-                console.log({
-                    msg: '오류가 발생하였습니다. 관리자에게 이 오류를 전달해 주세요.', e
-                })
+        CommentService.requestLike(commentId).then(r => {
+            if (!r) {
+                setBeforeLoginForm(true)
+                setIsLoginForm(true)
+                alert('로그인 후 좋아요 표시 가능합니다.')
+                window.scrollTo(0, 0)
+            }
+        }).catch(e => {
+            alert('좋아요 표시할 수 없음.')
+            console.log({
+                msg: '오류가 발생하였습니다. 관리자에게 이 오류를 전달해 주세요.', e
             })
-        } else {
-            setBeforeLoginForm(true)
-            setIsLoginForm(true)
-            alert('로그인 후 좋아요 표시 가능합니다.')
-            window.scrollTo(0, 0)
-        }
+        })
     }
     const comment = (commentId: number, writer: string, body: string, date: Date, likes: number) => {
         return (
