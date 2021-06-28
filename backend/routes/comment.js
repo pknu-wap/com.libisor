@@ -3,9 +3,9 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 //const { User, Post } = require('../models');
+const Sequelize = require('sequelize');
 const User = require('../models/user');
 const Post = require('../models/post');
-const { upsert } = require('../models/user');
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => { // 최근 코멘트 10개 날리기
     const posts = await Post.findAll({
         limit: 10,
         order: [ [ 'createdAt', 'DESC' ]],
-        attributes: ['id', 'content', 'createdAt', 'UserId'],
+        attributes: ['id', 'content', 'createdAt', 'UserId','likes'],
         /* belongsTo 상위를 못 가져오는 에러
         include: {
             model: User,
@@ -26,11 +26,13 @@ router.get('/', async (req, res) => { // 최근 코멘트 10개 날리기
     for ( i in posts) {
         const writer = await User.findOne({
             attributes: ['localId'],
-            where: {id : posts[i].UserId}
+            where: {id : posts[i].UserId},
         });
         let data = {};
         data["commentId"] = posts[i].id;
-        data["writer"] = writer.localId;
+        if(writer !== null) data["writer"] = writer.localId;
+        else data["writer"] = '탈퇴한 유저';
+        data["likes"] = posts[i].likes;
         data["content"] = posts[i].content;
         data["createdAt"] = posts[i].createdAt;
         result.push(data);
@@ -52,6 +54,22 @@ router.post('/', isLoggedIn, async (req, res) => { // 코멘트 작성
         content: comment
     });
     return res.status(200).send('ok');
+});
+
+router.get('/like/:commentId', isLoggedIn, async(req,res,next) => {
+    try {
+        const post = await Post.findOne({ whre: { id: req.params.commentId}});
+        if(post) {
+            await post.addLikers(parseInt(req.user.id,10));
+           // await Post.update({likes: Sequelize.literal(`${likes}+1`)}, { where: { id: req.params.commentId }});
+            res.status(200).send('liked');
+        } else {
+            res.status(404).send('ERROR');
+        }
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
 });
 
 router.delete('/', isLoggedIn, async (req, res) => {

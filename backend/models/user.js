@@ -47,11 +47,11 @@ module.exports = class User extends Sequelize.Model {
     db.User.hasMany(db.Post);
     /*
     db.User.hasMany(db.Comment);
-
+*/
     db.User.belongsToMany(db.Post, {
       as: 'LikedPosts',
       through: 'PostLike',
     });
-    */
+     
   }
 };
