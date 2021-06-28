@@ -8,7 +8,9 @@ interface UserServiceInterface {
     joinUser: (id: string, password: string) => Promise<UserJoinResponseDto>
     getUsername: () => Promise<string | null>
     logoutUser: () => Promise<boolean>
+    withdrawalUser: (id: string) => Promise<boolean>
 }
+
 
 const UserService: UserServiceInterface = {
     loginUser: async (id, password) => {
@@ -71,10 +73,17 @@ const UserService: UserServiceInterface = {
         })
         return response.ok
     }, getUsername: async () => {
+        // 나중에 꼭 production 코드로 전환할 것.
         const response = await fetch('/api/auth/localid', {
             credentials: "include"
         })
         return response.ok ? (await response.text()).slice(0, 51) : null
+        // return null
+    }, withdrawalUser: async () => {
+        const response = await fetch('/api/auth/withdrawal/member', {
+            credentials: "include"
+        })
+        return response.ok
     }
 }
 

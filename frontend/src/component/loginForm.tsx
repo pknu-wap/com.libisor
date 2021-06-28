@@ -32,6 +32,10 @@ const LoginForm: React.FC<LoginFormProps> = ({setUsername, setBeforeLoginFormVis
                     }
                 }
             }).catch(e => {
+                console.log({
+                    msg: '관리자에게 이 오류 메세지를 보내주세요.',
+                    e
+                })
                 setAlertType('E_ERROR')
             })
         }
