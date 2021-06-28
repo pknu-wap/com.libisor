@@ -13,21 +13,6 @@ interface CommentFormProps {
 
 
 const CommentForm: React.FC<CommentFormProps> = ({username, setBeforeLoginForm, setIsLoginForm}) => {
-    const requestLike = (commentId: number) => {
-        CommentService.requestLike(commentId).then(r => {
-            if (!r) {
-                setBeforeLoginForm(true)
-                setIsLoginForm(true)
-                alert('로그인 후 좋아요 표시 가능합니다.')
-                window.scrollTo(0, 0)
-            }
-        }).catch(e => {
-            alert('좋아요 표시할 수 없음.')
-            console.log({
-                msg: '오류가 발생하였습니다. 관리자에게 이 오류를 전달해 주세요.', e
-            })
-        })
-    }
     const comment = (commentId: number, writer: string, body: string, date: Date, likes: number) => {
         return (
             <Row className={'mb-3'}>
@@ -60,6 +45,28 @@ const CommentForm: React.FC<CommentFormProps> = ({username, setBeforeLoginForm, 
     const [newCommentBody, setNewCommentBody] = useState('')
     const newCommentBodyChange = (value: string) => {
         setNewCommentBody(value)
+    }
+    const requestLike = (commentId: number) => {
+        CommentService.requestLike(commentId).then(r => {
+            if (r){
+                reloadComments().catch(e => {
+                    alert('코멘트를 불러올 수 없습니다.')
+                    console.log({
+                        msg: '관리자에게 이 오류를 전달하여 주십시오.', e
+                    })
+                })
+            } else {
+                setBeforeLoginForm(true)
+                setIsLoginForm(true)
+                alert('로그인 후 좋아요 표시 가능합니다.')
+                window.scrollTo(0, 0)
+            }
+        }).catch(e => {
+            alert('좋아요 표시할 수 없음.')
+            console.log({
+                msg: '오류가 발생하였습니다. 관리자에게 이 오류를 전달해 주세요.', e
+            })
+        })
     }
     const postComment = async (username: string, body: string) => {
         const comment: CommentSaveRequestDto = {
