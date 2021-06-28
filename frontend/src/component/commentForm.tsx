@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Button, Card, Col, FormControl, InputGroup, Row} from "react-bootstrap";
+import React, {Dispatch, SetStateAction, useEffect, useState} from "react";
+import {Badge, Button, Card, Col, FormControl, InputGroup, Row} from "react-bootstrap";
 import CommentService from "../service/comment/commentService";
 import Common from "./common";
 import Comment from "../domain/comment/Comment";
@@ -7,11 +7,27 @@ import CommentSaveRequestDto from "../domain/comment/CommentSaveRequestDto";
 
 interface CommentFormProps {
     username: string | null
+    setBeforeLoginForm: Dispatch<SetStateAction<boolean>>
+    setIsLoginForm: Dispatch<SetStateAction<boolean>>
 }
 
 
-const CommentForm: React.FC<CommentFormProps> = ({username}) => {
-    const comment = (commentId: number, writer: string, body: string, date: Date) => {
+const CommentForm: React.FC<CommentFormProps> = ({username, setBeforeLoginForm, setIsLoginForm}) => {
+    const requestLike = (commentId: number) => {
+        if (username) {
+            CommentService.requestLike(commentId).catch(e => {
+                console.log({
+                    msg: '오류가 발생하였습니다. 관리자에게 이 오류를 전달해 주세요.', e
+                })
+            })
+        } else {
+            setBeforeLoginForm(true)
+            setIsLoginForm(true)
+            alert('로그인 후 좋아요 표시 가능합니다.')
+            window.scrollTo(0, 0)
+        }
+    }
+    const comment = (commentId: number, writer: string, body: string, date: Date, likes: number) => {
         return (
             <Row className={'mb-3'}>
                 <Col>
@@ -20,12 +36,16 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
                             {writer} says: {body}
                         </Card.Body>
                         <Card.Footer>
-                                {date.toLocaleString()}
-                                {' '}
+                            {date.toLocaleString()}
+                            {' '}
                             {writer === username ? (
                                 <small style={{
                                     cursor: "pointer"
                                 }} onClick={() => deleteComment(commentId, writer)}>삭제</small>) : null}
+                            {' '}
+                            <small style={{cursor: "pointer"}} onClick={() => requestLike(commentId)}>
+                                <Badge variant="light">👍 +{likes}</Badge>
+                            </small>
                         </Card.Footer>
                     </Card>
                 </Col>
@@ -34,7 +54,7 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
     }
     const [commentForms, setCommentForms] = useState([] as JSX.Element[])
     const reloadComments = async () => setCommentForms((await CommentService.getAll()).map((v: Comment) => {
-        return comment(v.commentId, v.writer, v.content, v.createdAt)
+        return comment(v.commentId, v.writer, v.content, v.createdAt, v.likes)
     }))
     const [newCommentBody, setNewCommentBody] = useState('')
     const newCommentBodyChange = (value: string) => {
@@ -55,9 +75,12 @@ const CommentForm: React.FC<CommentFormProps> = ({username}) => {
         await reloadComments()
     }
     useEffect(() => {
-        (async () => {
-            await reloadComments()
-        })()
+        reloadComments().catch(e => {
+            alert('코멘트를 불러올 수 없습니다.')
+            console.log({
+                msg: '관리자에게 이 오류를 전달하여 주십시오.', e
+            })
+        })
     }, [])
     return (
         <>

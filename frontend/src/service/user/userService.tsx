@@ -73,10 +73,12 @@ const UserService: UserServiceInterface = {
         })
         return response.ok
     }, getUsername: async () => {
+        // 나중에 꼭 production 코드로 전환할 것.
         const response = await fetch('/api/auth/localid', {
             credentials: "include"
         })
         return response.ok ? (await response.text()).slice(0, 51) : null
+        // return null
     }, withdrawalUser: async () => {
         const response = await fetch('/api/auth/withdrawal/member', {
             credentials: "include"

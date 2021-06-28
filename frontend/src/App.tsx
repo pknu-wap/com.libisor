@@ -38,9 +38,11 @@ function App() {
                                            isLoginForm={isLoginForm} setIsLoginForm={setIsLoginForm}/>
                         : null}
                     {username && profileFormVisible
-                        ? <ProfileForm setProfileFormVisible={setProfileFormVisible} setUsername={setUsername} username={username}/>
+                        ? <ProfileForm setProfileFormVisible={setProfileFormVisible} setUsername={setUsername}
+                                       username={username}/>
                         : null}
-                    <IndexForm username={username} libName={libName}/>
+                    <IndexForm username={username} libName={libName} setIsLoginForm={setIsLoginForm}
+                               setBeforeLoginForm={setBeforeLoginFormVisible}/>
                 </Route>
                 <Route path={'*'}>
                     Not Found.

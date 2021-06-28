@@ -3,4 +3,5 @@ export default interface Comment {
     createdAt: Date
     content: string
     writer: string
+    likes: number
 }
