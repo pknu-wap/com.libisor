@@ -58,8 +58,8 @@ axios.get('http://210.125.122.79/webseat/roomview5.asp?room_no=6')
                         INSERT INTO seatRecords(takeOrReturn, createdAt, updatedAt, SeatId) VALUES (${tor}, NOW(), NOW() ,${log});
                         `);
                     }
-                    //console.log(changeLog);
-                    connection.end();
+                    console.log(changeLog);
+                   return connection.end();
                 });
             }
         });
