@@ -19,7 +19,7 @@ const passportConfig = require('./passport');
 const app = express();
 passportConfig();
 app.set('port', process.env.PORT||8005);
-sequelize.sync( { force: false })
+sequelize.sync( { force: true })
 .then( () => {
     console.log('DB connection succeeded!');
 })
