@@ -44,6 +44,7 @@ module.exports = class Post extends Sequelize.Model {
     db.Post.belongsToMany(db.User, {
       as: 'Likers',
       through: 'PostLike',
+      foreignKey: 'postId'
     });
     /*
     db.Post.belongsToMany(db.Hashtag, { through: 'PostHashtag' });

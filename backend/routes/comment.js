@@ -58,10 +58,11 @@ router.post('/', isLoggedIn, async (req, res) => { // 코멘트 작성
 
 router.post('/like/:commentId', isLoggedIn, async(req,res,next) => {
     try {
-        const post = await Post.findOne({ whre: { id: req.params.commentId}});
+        const post = await Post.findOne({ where: { id: req.params.commentId}});
         if(post) {
-            await post.addLikers(parseInt(req.user.id,10));
-            await Post.update({likes: Sequelize.literal(`likes+1`)}, { where: { id: req.params.commentId }});
+            await post.addLiker(parseInt(req.user.id,10));
+            const likers = await post.getLikers();
+            await Post.update({likes: Sequelize.literal(`${likers}`)}, { where: { id: req.params.commentId }});
             res.status(200).send('liked');
         } else {
             res.status(404).send('ERROR');
