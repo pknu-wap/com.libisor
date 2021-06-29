@@ -59,8 +59,7 @@ router.get('/logout', isLoggedIn, (req, res) => {
 router.get('/withdrawal/member', isLoggedIn, async (req, res) => {
     //const { id } = req.body;
     let userId = req.user.id;
-    console.log(req.body);
-    req.logout();
+    //req.logout();
     req.session.destroy();
     await User.destroy({where: { id: userId}});
     return res.status(200).send('withdrew');

@@ -61,8 +61,10 @@ router.post('/like/:commentId', isLoggedIn, async(req,res,next) => {
         const post = await Post.findOne({ where: { id: req.params.commentId}});
         if(post) {
             await post.addLiker(parseInt(req.user.id,10));
+            
             const likers = await post.getLikers();
-            await Post.update({likes: Sequelize.literal(`${likers}`)}, { where: { id: req.params.commentId }});
+            console.log(post.id+"//////////"+likers.length+'======================================================');
+            await Post.update({likes: Sequelize.literal(`${likers.length}`)}, { where: { id: req.params.commentId }});
             res.status(200).send('liked');
         } else {
             res.status(404).send('ERROR');
